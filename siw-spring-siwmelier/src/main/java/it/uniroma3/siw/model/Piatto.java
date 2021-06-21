@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -11,7 +13,11 @@ public class Piatto {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable=false)
 	private String nome;
+	
+	@ManyToMany
+	private List<Vino> vini;
 	
 	public Piatto() {
 		

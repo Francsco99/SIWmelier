@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 
@@ -11,10 +13,17 @@ public class Produttore {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable=false)
 	private String nome;
 	
 	@Lob
 	private String descrizione;
+	
+	@OneToMany(mappedBy="produttore")
+	private List<Vino> viniProdotti;
+	
+	@ManyToMany(mappedBy="produttori")
+	private List<Regione> regioni;
 
 	public Produttore() {
 		

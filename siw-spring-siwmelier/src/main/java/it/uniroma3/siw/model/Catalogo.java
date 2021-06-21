@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,10 +12,14 @@ public class Catalogo {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable=false)
 	private String nome;
 	
 	@Lob
 	private String descrizione;
+	
+	@OneToMany(mappedBy = "catalogo")
+	private List<Vino> vini;
 	
 	public Catalogo() {
 		

@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -11,23 +13,39 @@ public class Vino {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable=false)
 	private String nome;
 	
+	@Column(nullable=false)
 	private String descrizione;
 	
 	private String annoImbottigliamento;
 	
+	@Column(nullable=false)
 	private String voto;
 	
 	private String gradazioneAlcolica;
 	
 	private String prezzo;
 	
+	@Column(nullable=false)
 	private Colore colore;
 	
+	@Column(nullable=false)
 	private Effervescenza effervescenza;
 	
+	@Column(nullable=false)
 	private Corposita corposita;
+	
+	@ManyToOne
+	private Catalogo catalogo;
+	
+	@ManyToMany(mappedBy="vini")
+	private Piatto piatto;
+	
+	@ManyToOne
+	private Produttore produttore;
+
 	
 	public Vino() {
 		

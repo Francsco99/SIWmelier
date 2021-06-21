@@ -1,5 +1,7 @@
 package it.uniroma3.siw.model;
 
+import java.util.List;
+
 import javax.persistence.*;
 
 @Entity
@@ -10,7 +12,11 @@ public class Regione {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
 	
+	@Column(nullable=false)
 	private String nome;
+	
+	@ManyToMany
+	private List<Regione> produttori;
 
 	public Regione() {
 		
