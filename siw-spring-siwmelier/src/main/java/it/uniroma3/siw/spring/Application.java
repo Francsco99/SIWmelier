@@ -1,13 +1,14 @@
-package com.example.demo;
+package it.uniroma3.siw.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+
 @SpringBootApplication
-public class SiwSpringSiwmelierApplication {
-
+public class Application {
+	
 	public static void main(String[] args) {
-		SpringApplication.run(SiwSpringSiwmelierApplication.class, args);
+		SpringApplication.run(Application.class, args);
+		
 	}
-
 }
