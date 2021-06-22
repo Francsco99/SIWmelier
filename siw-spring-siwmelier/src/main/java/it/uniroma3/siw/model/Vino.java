@@ -19,14 +19,14 @@ public class Vino {
 	@Column(nullable=false)
 	private String descrizione;
 	
-	private String annoImbottigliamento;
+	private Float annoImbottigliamento;
 	
 	@Column(nullable=false)
-	private String voto;
+	private Float voto;
 	
-	private String gradazioneAlcolica;
+	private Float gradazione;
 	
-	private String prezzo;
+	private Float prezzo;
 	
 	@Column(nullable=false)
 	private Colore colore;
@@ -75,35 +75,35 @@ public class Vino {
 		this.descrizione = descrizione;
 	}
 
-	public String getAnnoImbottigliamento() {
+	public Float getAnnoImbottigliamento() {
 		return annoImbottigliamento;
 	}
 
-	public void setAnnoImbottigliamento(String annoImbottigliamento) {
+	public void setAnnoImbottigliamento(Float annoImbottigliamento) {
 		this.annoImbottigliamento = annoImbottigliamento;
 	}
 
-	public String getVoto() {
+	public Float getVoto() {
 		return voto;
 	}
 
-	public void setVoto(String voto) {
+	public void setVoto(Float voto) {
 		this.voto = voto;
 	}
 
-	public String getGradazioneAlcolica() {
-		return gradazioneAlcolica;
+	public Float getGradazioneAlcolica() {
+		return gradazione;
 	}
 
-	public void setGradazioneAlcolica(String gradazioneAlcolica) {
-		this.gradazioneAlcolica = gradazioneAlcolica;
+	public void setGradazioneAlcolica(Float gradazioneAlcolica) {
+		this.gradazione = gradazioneAlcolica;
 	}
 
-	public String getPrezzo() {
+	public Float getPrezzo() {
 		return prezzo;
 	}
 
-	public void setPrezzo(String prezzo) {
+	public void setPrezzo(Float prezzo) {
 		this.prezzo = prezzo;
 	}
 
