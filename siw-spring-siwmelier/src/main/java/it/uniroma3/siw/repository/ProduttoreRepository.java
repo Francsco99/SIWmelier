@@ -9,7 +9,7 @@ import it.uniroma3.siw.model.Regione;
 
 public interface ProduttoreRepository extends CrudRepository<Produttore, Long>{
 
-	public Produttore findByNome(String nome);
+	public List<Produttore> findByNome(String nome);
 	
 	public List<Produttore> findAll();
 	
