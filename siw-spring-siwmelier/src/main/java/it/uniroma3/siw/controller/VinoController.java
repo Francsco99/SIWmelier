@@ -62,7 +62,7 @@ public class VinoController {
 	@RequestMapping(value = "/inserisciVino", method = RequestMethod.POST)
 	public String newProduttore(@ModelAttribute("vino") Vino vino, 
 			Model model, BindingResult bindingResult) {
-		//this.vinoValidator.validate(vino, bindingResult);
+		this.vinoValidator.validate(vino, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, passo alla conferma");
 			this.vinoTemp = vino;

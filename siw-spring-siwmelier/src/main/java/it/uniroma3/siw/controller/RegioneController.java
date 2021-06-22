@@ -63,7 +63,7 @@ public class RegioneController {
 	@RequestMapping(value = "/inserisciRegione", method = RequestMethod.POST)
 	public String newRegione(@ModelAttribute("regione") Regione regione, 
 			Model model, BindingResult bindingResult) {
-		//this.regioneValidator.validate(regione, bindingResult);
+		this.regioneValidator.validate(regione, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, inserisco la regione nel db");
 			this.regioneService.inserisci(regione);

@@ -58,7 +58,7 @@ public class PiattoController {
 	@RequestMapping(value = "/inserisciPiatto", method = RequestMethod.POST)
 	public String newPiatto(@ModelAttribute("piatto") Piatto piatto, 
 			Model model, BindingResult bindingResult) {
-		//this.piattoValidator.validate(piatto, bindingResult);
+		this.piattoValidator.validate(piatto, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, inserisco il piatto nel db");
 			this.piattoService.inserisci(piatto);

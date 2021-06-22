@@ -63,12 +63,12 @@ public class ProduttoreController {
 
 	/*raccoglie e valida i dati della form*/
 	@RequestMapping(value = "/inserisciProduttore", method = RequestMethod.POST)
-	public String newProduttore(@ModelAttribute("produttore") Produttore protuttore, 
+	public String newProduttore(@ModelAttribute("produttore") Produttore produttore, 
 			Model model, BindingResult bindingResult) {
-		//this.produttoreValidator.validate(produttore, bindingResult);
+		this.produttoreValidator.validate(produttore, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, passo alla conferma");
-			this.produttoreTemp = protuttore;
+			this.produttoreTemp = produttore;
 			return "confermaProduttoreForm.html";
 		}
 		return "produttoreForm.html";

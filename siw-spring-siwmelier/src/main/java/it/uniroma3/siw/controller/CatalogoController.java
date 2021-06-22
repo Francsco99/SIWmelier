@@ -63,7 +63,7 @@ public class CatalogoController {
 	@RequestMapping(value = "/inserisciCatalogo", method = RequestMethod.POST)
 	public String newCatalogo(@ModelAttribute("catalogo") Catalogo catalogo, 
 			Model model, BindingResult bindingResult) {
-		//this.catalogoValidator.validate(catalogo, bindingResult);
+		this.catalogoValidator.validate(catalogo, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, inserisco il catalogo nel db");
 			this.catalogoService.inserisci(catalogo);
