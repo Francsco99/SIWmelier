@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.model.Produttore;
-import it.uniroma3.siw.model.Regione;
 import it.uniroma3.siw.repository.ProduttoreRepository;
 
 @Service
