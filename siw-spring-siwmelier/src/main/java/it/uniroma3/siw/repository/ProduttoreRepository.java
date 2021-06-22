@@ -13,5 +13,5 @@ public interface ProduttoreRepository extends CrudRepository<Produttore, Long>{
 	
 	public List<Produttore> findAll();
 	
-	public List<Produttore> findByRegione(Regione regione);
+	public List<Produttore> findByRegioni(List<Regione> regioni);
 }

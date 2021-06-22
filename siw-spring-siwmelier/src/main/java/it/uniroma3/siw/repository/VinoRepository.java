@@ -32,7 +32,7 @@ public interface VinoRepository extends CrudRepository<Vino,Long> {
 	
 	public List<Vino> findByProduttore(Produttore produttore);
 	
-	public List<Vino> findByPiatto(Piatto piatto);
+	public List<Vino> findByPiatti(List<Piatto> piatti);
 	
 	public List<Vino> findByCatalogo(Catalogo catalogo);
 }
