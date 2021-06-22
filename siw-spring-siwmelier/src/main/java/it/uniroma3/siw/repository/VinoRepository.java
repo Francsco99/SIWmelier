@@ -14,9 +14,7 @@ import it.uniroma3.siw.model.Vino;
 
 public interface VinoRepository extends CrudRepository<Vino,Long> {
 
-	public Vino findByNome(String nome);
-	
-	public List<Vino> findByColore(Colore colore);
+	public List<Vino> findByNome(String nome);
 	
 	public List<Vino> findByAnnoImbottigliamento(Float anno);
 	
@@ -30,9 +28,13 @@ public interface VinoRepository extends CrudRepository<Vino,Long> {
 	
 	public List<Vino> findByCorposita(Corposita corposita);
 	
+	public List<Vino> findByColore(Colore colore);
+	
 	public List<Vino> findByProduttore(Produttore produttore);
 	
-	public List<Vino> findByPiatto(Piatto piatto);
+	public List<Vino> findByPiatti(List<Piatto> piatti);
 	
 	public List<Vino> findByCatalogo(Catalogo catalogo);
+	
+	public List<Vino> findAll();
 }

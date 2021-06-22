@@ -8,7 +8,7 @@ import it.uniroma3.siw.model.Regione;
 
 public interface RegioneRepository extends CrudRepository<Regione, Long> {
 	
-	public Regione findByNome(String nome);
+	public List<Regione> findByNome(String nome);
 	
 	public List<Regione> findAll();
 
