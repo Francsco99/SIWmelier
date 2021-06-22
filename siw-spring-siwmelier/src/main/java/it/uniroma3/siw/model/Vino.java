@@ -1,6 +1,6 @@
 package it.uniroma3.siw.model;
 
-import java.util.List;
+import java.util.*;
 
 import javax.persistence.*;
 
@@ -41,14 +41,14 @@ public class Vino {
 	private Catalogo catalogo;
 	
 	@ManyToMany(mappedBy="vini")
-	private Piatto piatto;
+	private List<Piatto> piatti;
 	
 	@ManyToOne
 	private Produttore produttore;
 
 	
 	public Vino() {
-		
+		this.piatti = new ArrayList<>();	
 	}
 
 	public Long getId() {

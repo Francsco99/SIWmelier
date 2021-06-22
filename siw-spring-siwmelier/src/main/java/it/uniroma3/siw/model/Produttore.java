@@ -1,5 +1,6 @@
 package it.uniroma3.siw.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.*;
@@ -26,7 +27,8 @@ public class Produttore {
 	private List<Regione> regioni;
 
 	public Produttore() {
-		
+		this.viniProdotti = new ArrayList<>();
+		this.regioni = new ArrayList<>();
 	}
 
 	public Long getId() {
