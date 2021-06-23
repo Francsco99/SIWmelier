@@ -1,0 +1,15 @@
+package it.uniroma3.siw.spring.repository;
+
+import java.util.List;
+
+import org.springframework.data.repository.CrudRepository;
+
+import it.uniroma3.siw.spring.model.Regione;
+
+public interface RegioneRepository extends CrudRepository<Regione, Long> {
+	
+	public List<Regione> findByNome(String nome);
+	
+	public List<Regione> findAll();
+
+}
