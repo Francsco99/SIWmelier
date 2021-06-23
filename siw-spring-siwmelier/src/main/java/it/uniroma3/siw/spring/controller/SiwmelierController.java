@@ -10,9 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Vino;
-import it.uniroma3.siw.spring.service.SiwmelierService;
 import it.uniroma3.siw.spring.service.VinoService;
-import it.uniroma3.siw.spring.validator.SiwmelierValidator;
 
 @Controller
 public class SiwmelierController {

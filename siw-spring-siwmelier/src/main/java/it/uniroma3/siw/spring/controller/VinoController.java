@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import it.uniroma3.siw.spring.model.Produttore;
 import it.uniroma3.siw.spring.model.Vino;
 import it.uniroma3.siw.spring.service.VinoService;
 import it.uniroma3.siw.spring.validator.VinoValidator;
