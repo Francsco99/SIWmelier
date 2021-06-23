@@ -50,9 +50,9 @@ public class AuthenticationController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/home";
+            return "admin/index";
         }
-        return "home";
+        return "index";
     }
 	
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)

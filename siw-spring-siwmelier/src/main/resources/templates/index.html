@@ -59,40 +59,21 @@
 	</div>
 
 	<h1>Gli ultimi aggiunti:</h1>
-	<div id="ultimi aggiunti">
+	<div id="piu-votati">
 		<div class="card-deck">
-			<div class="card">
-				<img class="card-img-top" src=".../100px180/" alt="Card image cap">
+			<div class="card" th:each="vino : ${vini}">
+				<h5 class="card-title" th:text="${vino.nome}"></h5>
+				<img class="card-img-top" th:src="${vino.immagine}" alt="Card image cap">
 				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
 					<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
 				</div>
-				<div class="card-footer">
-					<small class="text-muted">Last updated 3 mins ago</small>
+				<div class="card-footer">VOTO
 				</div>
 			</div>
-			<div class="card">
-				<img class="card-img-top" src=".../100px180/" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-				</div>
-				<div class="card-footer">
-					<small class="text-muted">Last updated 3 mins ago</small>
-				</div>
-			</div>
-			<div class="card">
-				<img class="card-img-top" src=".../100px180/" alt="Card image cap">
-				<div class="card-body">
-					<h5 class="card-title">Card title</h5>
-					<p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
-				</div>
-				<div class="card-footer">
-					<small class="text-muted">Last updated 3 mins ago</small>
-				</div>
-			</div>
+			
 		</div>
 	</div>
+	
 
 <div class="fixed-bottom">
 	<footer class="footer mt-auto py-3 bg-light">
