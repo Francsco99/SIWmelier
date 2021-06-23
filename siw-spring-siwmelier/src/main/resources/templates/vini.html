@@ -3,6 +3,7 @@
 
 <link th:href="@{/css/vini.css}" rel="stylesheet">
 
-<head th:include="fragments/testa.html :: testa"></head>
-
+<div th:each="vino : ${vini}">
+	<p th:text="${vino.html}"></p>
+</div>
 </html>

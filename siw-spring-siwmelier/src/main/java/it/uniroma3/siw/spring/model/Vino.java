@@ -16,26 +16,28 @@ public class Vino {
 	@Column(nullable=false)
 	private String nome;
 	
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private String descrizione;
 	
 	private Float annoImbottigliamento;
 	
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Float voto;
 	
 	private Float gradazione;
 	
 	private Float prezzo;
 	
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Colore colore;
 	
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Effervescenza effervescenza;
 	
-	@Column(nullable=false)
+	//@Column(nullable=false)
 	private Corposita corposita;
+	
+	private String immagine;
 	
 	@ManyToOne
 	private Catalogo catalogo;
@@ -46,6 +48,10 @@ public class Vino {
 	@ManyToOne
 	private Produttore produttore;
 
+	public Vino(String nome,String immagine) {
+		this.nome = nome;
+		this.immagine = immagine;
+	}
 	
 	public Vino() {
 		this.piatti = new ArrayList<>();	
@@ -129,6 +135,14 @@ public class Vino {
 
 	public void setCorposita(Corposita corposita) {
 		this.corposita = corposita;
+	}
+
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 
 }
