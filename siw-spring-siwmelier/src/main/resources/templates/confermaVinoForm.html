@@ -3,6 +3,49 @@
 
 <link th:href="@{/css/confermaVinoForm.css}" rel="stylesheet">
 
-<head th:include="fragments/testa.html :: testa"></head>
+<head th:include="fragments/testa.html :: navbar"></head>
+
+<body>
+	<div>
+		<h4>
+			Ecco i dati che hai inserito
+		</h4>
+	</div>
+	
+	<form th:action="@{confermaVino}" method="POST" th:object="${vino}">
+		<div th:if="${vino}" th:object="${vino}">
+		<div>
+			<span class="descrittori">Nome: </span>
+			<span th:text="*{nome}"></span>
+		</div> 
+
+		<div>
+			<span class="descrittori">Descrizione: </span>
+			<span th:text="*{descrizione}"></span>
+		</div> 
+		
+		<div>
+			<span class="descrittori">Voto: </span>
+			<span th:text="*{voto}"></span>
+		</div> 
+		
+		<div>
+			<span class="descrittori">Colore: </span>
+			<span th:text="*{colore}"></span>
+		</div> 
+		
+		<div>
+			<span class="descrittori">Immagine: </span>
+			<span th:text="*{immagine}"></span>
+		</div> 
+		
+		<section>
+			<button th:type="submit" th:name="action" th:value="confirm">Conferma</button>
+			<button th:type="submit" th:name="action" th:value="cancel">Torna indietro</button>
+		</section>
+	
+	</form>
+	
+</body>
 
 </html>
