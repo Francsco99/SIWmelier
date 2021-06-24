@@ -1,5 +1,9 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +35,19 @@ public class RegioneController {
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	/*funzione test per aggiungere regioni*/
+	private void aggiungiRegioniTest() {
+		List<String> regioni = Arrays.asList("valle d'aosta","piemonte",
+				"lombardia","trentino","veneto","friuli","liguria",
+				"emilia","toscana","marche","umbria","lazio","abruzzo",
+				"molise","campania","puglia","basilicata","calabria","sicilia",
+				"sardegna");
+		for(String r : regioni) {
+			Regione reg = new Regione(r);
+			regioneService.inserisci(reg);
+		}
+	}
+	
 	/*Popola la form*/
 	@RequestMapping(value="/addRegione", method = RequestMethod.GET)
 	public String addRegione(Model model) {
@@ -41,21 +58,24 @@ public class RegioneController {
 	
 	/*Si occupa di gestire la richiesta quando viene selezionato
 	 * una regione dalla pagina delle varie regioni*/
+	
 	@RequestMapping(value = "/regione/{id}", method = RequestMethod.GET)
 	public String getRegione(@PathVariable("id") Long id, Model model) {
 		Regione regione = this.regioneService.regionePerId(id);
 		model.addAttribute("regione", regione);
 
-		/*popola la lista dei produttori di questa regione corrente*/
+		//popola la lista dei produttori di questa regione corrente
 		//model.addAttribute("produttori", this.produttoreService.produttoriPerRegione)
 		return "regione.html";
 	}
+	
 	
 	/*Si occupa di gestire la richiesta quando viene selezionato
 	 * il link della pagina regioni*/
 	@RequestMapping(value = "/regioni", method = RequestMethod.GET)
 	public String getRegioni(Model model) {
-		model.addAttribute("regioni", this.regioneService.tutti());
+		//this.aggiungiRegioniTest();
+		model.addAttribute("regioni", this.regioneService.tutteAlfabetico());
 		return "regioni.html";
 	}
 

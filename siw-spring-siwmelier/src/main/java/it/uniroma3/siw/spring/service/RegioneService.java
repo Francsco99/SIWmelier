@@ -48,6 +48,11 @@ public class RegioneService {
 	public List<Regione> tutti(){
 		return this.regioneRepository.findAll();
 	}
+	
+	@Transactional
+	public List<Regione> tutteAlfabetico(){
+		return this.regioneRepository.findByOrderByNomeAsc();
+	}
 
 	@Transactional
 	public List<Regione> regioniPerNome(String nome){

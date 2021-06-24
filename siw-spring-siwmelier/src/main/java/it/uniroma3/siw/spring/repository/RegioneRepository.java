@@ -11,5 +11,7 @@ public interface RegioneRepository extends CrudRepository<Regione, Long> {
 	public List<Regione> findByNome(String nome);
 	
 	public List<Regione> findAll();
+	
+	public List<Regione> findByOrderByNomeAsc();
 
 }

@@ -48,9 +48,10 @@ public class Vino {
 	@ManyToOne
 	private Produttore produttore;
 
-	public Vino(String nome,String immagine) {
+	public Vino(String nome,String immagine,Float voto) {
 		this.nome = nome;
 		this.immagine = immagine;
+		this.voto=voto;
 	}
 	
 	public Vino() {

@@ -21,6 +21,10 @@ public class Regione {
 	public Regione() {
 		
 	}
+	
+	public Regione(String nome) {
+		this.nome=nome;
+	}
 
 	public Long getId() {
 		return id;

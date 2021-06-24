@@ -37,4 +37,8 @@ public interface VinoRepository extends CrudRepository<Vino,Long> {
 	public List<Vino> findByCatalogo(Catalogo catalogo);
 	
 	public List<Vino> findAll();
+	
+	public List<Vino> findByOrderByVotoDesc();
+	
+	public List<Vino> findByOrderByVotoAsc();
 }

@@ -55,6 +55,16 @@ public class VinoService {
 	}
 	
 	@Transactional
+	public List<Vino> tuttiOrdinatiPerVotoDec(){
+		return this.vinoRepository.findByOrderByVotoDesc();
+	}
+	
+	@Transactional
+	public List<Vino> tuttiOrdinatiPerVotoCres(){
+		return this.vinoRepository.findByOrderByVotoAsc();
+	}
+	
+	@Transactional
 	public List<Vino> viniPerNome(String nome){
 		return this.vinoRepository.findByNome(nome);
 	}

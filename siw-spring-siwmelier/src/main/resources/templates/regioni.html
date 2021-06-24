@@ -1,8 +1,29 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<link th:href="@{/css/regioni.css}" rel="stylesheet">
+<head th:replace="fragments/myBase.html :: intestazione"></head>
 
-<head th:include="fragments/testa.html :: testa"></head>
+<nav th:replace="fragments/myBase.html :: navigazioneHomepage"></nav>
+
+<h2>Tutte le regioni</h2>
+
+<body>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm">
+				<ul>
+					<li th:each="regione : ${regioni}">
+						<p th:text="${regione.nome}"></p>
+					</li>
+				</ul>
+			</div>
+			<div class="col-sm">
+				<div th:replace="fragments/italia.html :: italia"></div>
+			</div>
+		</div>
+	</div>
+</body>
+
+<footer th:replace="fragments/myBase.html :: pie"></footer>
 
 </html>

@@ -1,8 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<link th:href="@{/css/regione.css}" rel="stylesheet">
+<head th:replace="fragments/myBase.html :: intestazione"></head>
 
-<head th:include="fragments/testa.html :: testa"></head>
+<nav th:replace="fragments/myBase.html :: navigazioneHomepage"></nav>
+
+<h2 th:if="${regione.nome} == 'valledaosta'">valle d' aosta</h2>
+<h2 th:unless="${regione.nome} == 'valledaosta'" th:text="${regione.nome}"></h2>
 
 </html>

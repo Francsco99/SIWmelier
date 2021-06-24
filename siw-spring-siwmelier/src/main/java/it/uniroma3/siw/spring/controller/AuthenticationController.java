@@ -14,6 +14,7 @@ import it.uniroma3.siw.spring.validator.*;
 import it.uniroma3.siw.spring.model.Credentials;
 import it.uniroma3.siw.spring.model.User;
 import it.uniroma3.siw.spring.service.CredentialsService;
+import it.uniroma3.siw.spring.service.VinoService;
 
 @Controller
 public class AuthenticationController {
@@ -26,6 +27,9 @@ public class AuthenticationController {
 	
 	@Autowired
 	private CredentialsValidator credentialsValidator;
+	
+	@Autowired
+	private VinoService  vinoService;
 	
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
 	public String showRegisterForm (Model model) {
@@ -41,6 +45,8 @@ public class AuthenticationController {
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
 	public String logout(Model model) {
+		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
+		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
 		return "index";
 	}
 	
@@ -50,9 +56,11 @@ public class AuthenticationController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/index";
+            return "admin/home";
         }
-        return "index";
+    	model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
+		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
+        return "home";
     }
 	
     @RequestMapping(value = { "/register" }, method = RequestMethod.POST)
