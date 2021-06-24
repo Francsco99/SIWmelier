@@ -1,9 +1,15 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<link th:href="@{/css/vini.css}" rel="stylesheet">
+<head th:include="fragments/testa.html :: navbar">
+	<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
+</head>
 
-<div th:each="vino : ${vini}">
-	<p th:text="${vino.html}"></p>
+<div>
+	<ul>
+		<li th:each="vino : ${vini}">
+			<p th:text="${vino.nome}"/>
+		</li>
+	</ul>
 </div>
 </html>

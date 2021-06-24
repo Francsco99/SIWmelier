@@ -32,7 +32,7 @@ public class SiwmelierController {
 		return null;
 	}
 	
-	@RequestMapping(value= {"/", "index"}, method = RequestMethod.GET)
+	/*@RequestMapping(value= {"/", "index"}, method = RequestMethod.GET)
 	public String getViniHome(Model model) {
 		Vino v5 = new Vino("vino5","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg");
 		Vino v1 = new Vino("vino1","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg");
@@ -48,5 +48,5 @@ public class SiwmelierController {
 		vinoService.inserisci(v5);
 		model.addAttribute("vini", this.vinoService.tutti());
 		return "index";
-	}
+	}*/
 }
