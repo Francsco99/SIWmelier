@@ -1,12 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-	<link th:href="@{/css/vinoForm.css}" rel="stylesheet">
-
-	<head th:include="fragments/testa.html :: navbar">
+	<head>
 		<link th:href="@{/css/bootstrap.css}" rel="stylesheet">
 	</head>
 
+	<nav th:replace="fragments/testa.html :: navbar"></nav>
 	<body>
 		<div>
     		<h4>Inserisci i dati del vino che vuoi inserire:</h4>
