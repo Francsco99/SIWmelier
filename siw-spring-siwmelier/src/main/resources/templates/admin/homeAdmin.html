@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="fragments/myBase.html :: intestazione"></head>
+
+<nav th:replace="fragments/myBase.html :: navigazioneAdmin"></nav>
+
+<body>
+	<h1>I vini piu votati (voto maggiore di 7):</h1>
+	<div id="piu-votati">
+		<div class="card-deck">
+			<div class="card" th:each="vino : ${viniDecr}" th:if="${vino.voto} > 7">
+				<h5 class="card-title" th:text="${vino.nome}"></h5>
+				<img class="card-img-top" th:src="${vino.immagine}" alt="Card image cap">
+				<div class="card-body">
+					<p class="card-text">DESCRIZIONE</p>
+				</div>
+				<div class="card-footer" th:text="${vino.voto}"></div>
+			</div>
+		</div>
+	</div>
+
+	<h1>Gli ultimi aggiunti:</h1>
+	<div id="ultimi-aggiunti">
+		<div class="card-deck">
+			<div class="card" th:each="vino : ${viniCresc}">
+				<h5 class="card-title" th:text="${vino.nome}"></h5>
+				<img class="card-img-top" th:src="${vino.immagine}" alt="Card image cap">
+				<div class="card-body">
+					<p class="card-text">DESCRIZIONE</p>
+				</div>
+				<div class="card-footer" th:text="${vino.voto}"></div>
+			</div>
+			
+		</div>
+	</div>
+	
+	<footer th:replace="fragments/myBase.html :: pie"></footer>
+
+</body>
+
+</html>
+
