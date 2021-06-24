@@ -3,7 +3,7 @@
 
 <head th:replace="fragments/myBase.html :: intestazione"></head>
 
-<nav th:replace="fragments/myBase.html :: navigazioneHomepage"></nav>
+<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
 
 <h2 th:if="${regione.nome} == 'valledaosta'">valle d' aosta</h2>
 <h2 th:unless="${regione.nome} == 'valledaosta'" th:text="${regione.nome}"></h2>
