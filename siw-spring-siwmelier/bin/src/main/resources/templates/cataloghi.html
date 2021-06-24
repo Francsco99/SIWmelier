@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<link th:href="@{/css/cataloghi.css}" rel="stylesheet">
+
+<head th:replace="fragments/myBase.html :: intestazione"></head>
+
+<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
+
+<body>
+	<h2>Cataloghi</h2>
+
+	<div class="row">
+		<div class="col">DOC
+			<div><img src="images/doc.png"></div>
+		</div>
+		<div class="col">DOCG
+			<div>
+				<img src="images/docg.png">
+			</div>
+		</div>
+		<div class="w-100"></div>
+		<div class="col">IGP
+			<div>
+				<img src="images/igp.png">
+			</div>
+		</div>
+		<div class="col">VINO DA TAVOLA
+			<div>
+				<img src="images/vdt.png">
+			</div>
+		</div>
+	</div>
+</body>
+
+<footer th:replace="fragments/myBase.html :: pie"></footer>
+
+</html>

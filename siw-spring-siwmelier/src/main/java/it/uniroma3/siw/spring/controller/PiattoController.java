@@ -27,11 +27,11 @@ public class PiattoController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/*Popola la form*/
-	@RequestMapping(value="/addPiatto", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/addPiatto", method = RequestMethod.GET)
 	public String addPiatto(Model model) {
 		logger.debug("PASSO ALLA FORM addPiatto");
 		model.addAttribute("piatto", new Piatto());
-		return "piattoForm.html";
+		return "/admin/piattoForm.html";
 	}
 	
 	/*Si occupa di gestire la richiesta quando viene selezionato
@@ -55,7 +55,7 @@ public class PiattoController {
 	}
 	
 	/*raccoglie e valida i dati della form*/
-	@RequestMapping(value = "/inserisciPiatto", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/inserisciPiatto", method = RequestMethod.POST)
 	public String newPiatto(@ModelAttribute("piatto") Piatto piatto, 
 			Model model, BindingResult bindingResult) {
 		this.piattoValidator.validate(piatto, bindingResult);
@@ -64,7 +64,7 @@ public class PiattoController {
 			this.piattoService.inserisci(piatto);
 			return "piatti.html";
 		}
-		return "piattoForm.html";
+		return "/admin/piattoForm.html";
 	} 
 
 }

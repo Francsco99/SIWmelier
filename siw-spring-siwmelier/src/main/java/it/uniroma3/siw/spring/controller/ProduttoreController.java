@@ -34,11 +34,11 @@ public class ProduttoreController {
 	private Produttore produttoreTemp;
 
 	/*Popola la form*/
-	@RequestMapping(value="/addProduttore", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/addProduttore", method = RequestMethod.GET)
 	public String addProduttore(Model model) {
 		logger.debug("PASSO ALLA FORM addProduttore");
 		model.addAttribute("produttore", new Produttore());
-		return "produttoreForm.html";
+		return "/admin/produttoreForm.html";
 	}
 
 	/*Si occupa di gestire la richiesta quando viene selezionato
@@ -62,19 +62,19 @@ public class ProduttoreController {
 	}
 
 	/*raccoglie e valida i dati della form*/
-	@RequestMapping(value = "/inserisciProduttore", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/inserisciProduttore", method = RequestMethod.POST)
 	public String newProduttore(@ModelAttribute("produttore") Produttore produttore, 
 			Model model, BindingResult bindingResult) {
 		this.produttoreValidator.validate(produttore, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, passo alla conferma");
 			this.produttoreTemp = produttore;
-			return "confermaProduttoreForm.html";
+			return "/admin/confermaProduttoreForm.html";
 		}
-		return "produttoreForm.html";
+		return "/admin/produttoreForm.html";
 	}
 
-	@RequestMapping(value = "/confermaProduttore", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/confermaProduttore", method = RequestMethod.POST)
 	public String confermaProduttore(Model model,
 			@RequestParam(value = "action") String comando) {
 		model.addAttribute("produttore",produttoreTemp);
@@ -89,7 +89,7 @@ public class ProduttoreController {
 			return "produttori.html";
 		}
 		else {
-			return "produttoreForm.html";
+			return "/admin/produttoreForm.html";
 		}
 	}
 

@@ -56,7 +56,9 @@ public class AuthenticationController {
     	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
     	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-            return "admin/home";
+    		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
+    		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
+            return "admin/homeAdmin";
         }
     	model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());

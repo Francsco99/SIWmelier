@@ -30,11 +30,11 @@ public class VinoController {
 	private Vino vinoTemp;
 	
 	/*Popola la form*/
-	@RequestMapping(value="/addVino", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/addVino", method = RequestMethod.GET)
 	public String addVino(Model model) {
 		logger.debug("PASSO ALLA FORM addVino");
 		model.addAttribute("vino", new Vino());
-		return "VinoForm.html";
+		return "/admin/vinoForm.html";
 	}
 
 	/*Si occupa di gestire la richiesta quando viene selezionato
@@ -58,19 +58,19 @@ public class VinoController {
 	}
 	
 	/*raccoglie e valida i dati della form*/
-	@RequestMapping(value = "/inserisciVino", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/inserisciVino", method = RequestMethod.POST)
 	public String newProduttore(@ModelAttribute("vino") Vino vino, 
 			Model model, BindingResult bindingResult) {
 		this.vinoValidator.validate(vino, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, passo alla conferma");
 			this.vinoTemp = vino;
-			return "confermaVinoForm.html";
+			return "admin/confermaVinoForm.html";
 		}
-		return "VinoForm.html";
+		return "admin/vinoForm.html";
 	}
 
-	@RequestMapping(value = "/confermaVino", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/confermaVino", method = RequestMethod.POST)
 	public String confermaVino(Model model,
 			@RequestParam(value = "action") String comando) {
 		model.addAttribute("vino",vinoTemp);
@@ -85,7 +85,7 @@ public class VinoController {
 			return "vini.html";
 		}
 		else {
-			return "vinoForm.html";
+			return "/admin/vinoForm.html";
 		}
 	}
 

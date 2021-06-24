@@ -50,11 +50,11 @@ public class RegioneController {
 	}
 	
 	/*Popola la form*/
-	@RequestMapping(value="/addRegione", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/addRegione", method = RequestMethod.GET)
 	public String addRegione(Model model) {
 		logger.debug("PASSO ALLA FORM addRegione");
 		model.addAttribute("regione", new Regione());
-		return "regioneForm.html";
+		return "/admin/regioneForm.html";
 	}
 	
 	/*Si occupa di gestire la richiesta quando viene selezionato
@@ -81,7 +81,7 @@ public class RegioneController {
 	}
 
 	/*raccoglie e valida i dati della form*/
-	@RequestMapping(value = "/inserisciRegione", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/inserisciRegione", method = RequestMethod.POST)
 	public String newRegione(@ModelAttribute("regione") Regione regione, 
 			Model model, BindingResult bindingResult) {
 		this.regioneValidator.validate(regione, bindingResult);
@@ -90,7 +90,7 @@ public class RegioneController {
 			this.regioneService.inserisci(regione);
 			return "regioni.html";
 		}
-		return "regioneForm.html";
+		return "/admin/regioneForm.html";
 	} 
 
 }
