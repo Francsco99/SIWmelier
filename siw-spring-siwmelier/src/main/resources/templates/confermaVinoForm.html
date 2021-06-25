@@ -1,9 +1,11 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<link th:href="@{/css/confermaVinoForm.css}" rel="stylesheet">
+<link th:href="@{/css/cataloghi.css}" rel="stylesheet">
 
-<head th:include="fragments/testa.html :: navbar"></head>
+<head th:replace="fragments/myBase.html :: intestazione"></head>
+
+<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
 
 <body>
 	<div>
@@ -14,38 +16,49 @@
 	
 	<form th:action="@{confermaVino}" method="POST" th:object="${vino}">
 		<div th:if="${vino}" th:object="${vino}">
-		<div>
-			<span class="descrittori">Nome: </span>
-			<span th:text="*{nome}"></span>
-		</div> 
+			<div>
+				<span class="descrittori">Nome: </span>
+				<span th:text="*{nome}"></span>
+			</div> 
 
-		<div>
-			<span class="descrittori">Descrizione: </span>
-			<span th:text="*{descrizione}"></span>
-		</div> 
+			<div>
+				<span class="descrittori">Descrizione: </span>
+				<span th:text="*{descrizione}"></span>
+			</div> 
+			
+			<div>
+				<span class="descrittori">Voto: </span>
+				<span th:text="*{voto}"></span>
+			</div> 
+			
+			<div>
+				<span class="descrittori">Colore: </span>
+				<span th:text="*{colore}"></span>
+			</div> 
+			
+			<div>
+				<span class="descrittori">Immagine: </span>
+				<span th:text="*{immagine}"></span>
+			</div> 
+			
+			<div>
+				<span class="descrittori">Corposita': </span>
+				<span th:text="*{corposita}"></span>
+			</div> 
+			
+			<div>
+				<span class="descrittori">Effervescenza: </span>
+				<span th:text="*{effervescenza}"></span>
+			</div> 
+			
+			<section>
+				<button th:type="submit" th:name="action" th:value="confirm">Conferma</button>
+				<button th:type="submit" th:name="action" th:value="cancel">Torna indietro</button>
+			</section>
+			
+		</form>
 		
-		<div>
-			<span class="descrittori">Voto: </span>
-			<span th:text="*{voto}"></span>
-		</div> 
-		
-		<div>
-			<span class="descrittori">Colore: </span>
-			<span th:text="*{colore}"></span>
-		</div> 
-		
-		<div>
-			<span class="descrittori">Immagine: </span>
-			<span th:text="*{immagine}"></span>
-		</div> 
-		
-		<section>
-			<button th:type="submit" th:name="action" th:value="confirm">Conferma</button>
-			<button th:type="submit" th:name="action" th:value="cancel">Torna indietro</button>
-		</section>
-	
-	</form>
-	
-</body>
+	</body>
 
-</html>
+	<footer th:replace="fragments/myBase.html :: pie"></footer>
+	</html>

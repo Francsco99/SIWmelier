@@ -1,48 +1,94 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/base.html :: headerfiles(title='Registra Utente')"> </head>
+
+<head th:include="fragments/myBase.html :: intestazione">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+	<script src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+ </head>
+
+<nav th:replace="fragments/myBase.html :: navigazione"></nav>
+
 <body>
-	<header th:replace="fragments/base.html :: intestazione"></header>
-	<div>
-    	<h4 th:text="#{header.registra}">Registrazione</h4>
-	<form th:action="@{/register}" method="POST">
-    <table>
-        <tr>
-            <td>Username</td>
-            <td><input type="text" placeholder="username" required
-                       th:field="${credentials.username}"/></td>
-            <td th:if="${#fields.hasErrors('credentials.username')}"
-                th:errors="${credentials.username}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>Password</td>
-            <td><input type="password" placeholder="password" required
-                       th:field="${credentials.password}"/></td>
-            <td th:if="${#fields.hasErrors('credentials.password')}"
-                th:errors="${credentials.password}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>Nome</td>
-            <td><input type="text" placeholder="nome" required
-                       th:field="${user.nome}"/></td>
-            <td th:if="${#fields.hasErrors('user.nome')}"
-                th:errors="${user.nome}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>Cognome</td>
-            <td><input type="text" placeholder="cognome" required
-                       th:field="${user.cognome}"/></td>
-            <td th:if="${#fields.hasErrors('user.cognome')}"
-                th:errors="${user.cognome}" th:style="'color:red'"></td>
-        </tr>
-        <tr>
-            <td>
-                <button type="submit">Registra</button>
-            </td>
-        </tr>
-    </table>
-	</form>
-	</div>
-    <footer th:replace="fragments/base.html :: fondo(home='/')"></footer>
+    
+<div class="row h-100 justify-content-center align-items-center" style="background-color:#ddccff">
+                    <div id="loginbox" class="mainbox col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2" style="">
+                        <div class="text-center" style="margin-top:50px;">
+                            <div class="panel-title">Registrati</div>
+                        </div>  
+                        <div class="row justify-content-md-center" >
+                            <form id="signupform" class="form-horizontal" role="form" th:action="@{/register}" method="POST">
+                                
+                                <div id="signupalert" style="display:none" class="alert alert-danger">
+                                    <p>Error:</p>
+                                    <span></span>
+                                </div>
+                                    
+                                <div class="row" style="padding-left: 90px">
+                                
+                                <div class="col" style="margin-top: 25px">
+                                <div class="form-group">
+                                	 
+                                    <label for="email" class="col-md-3 control-label">Username</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="email" placeholder="username" th:field="${credentials.username}">
+                                    </div>
+                                    <span th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}" th:style="'color:red'"></span>
+                                </div>
+                                </div>
+                                
+                                
+                                <div class="col" style="margin-top: 25px">    
+                                <div class="form-group">
+                                    <label for="password" class="col-md-3 control-label">Password</label>
+                                    <div class="col-md-9">
+                                        <input type="password" class="form-control" name="passwd" placeholder="password" th:field="${credentials.password}">
+                                        <span th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}" th:style="'color:red'"></span>
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                </div>
+                                
+                                <div class="row" style="padding-left: 90px">
+                                
+                                <div class="col" >     
+                                <div class="form-group">
+                                    <label for="firstname" class="col-md-3 control-label">Nome</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="firstname" placeholder="nome" th:field="${user.nome}">
+                                    </div>
+                                </div>
+                                </div>
+                               
+                               <div class="col">  
+                               <div class="form-group" style="margin-bottom: 50px">
+                                    <label for="firstname" class="col-md-3 control-label">Cognome</label>
+                                    <div class="col-md-9">
+                                        <input type="text" class="form-control" name="lastname" placeholder="cognome" th:field="${user.cognome}">
+                                    </div>
+                                </div>
+                                </div>
+                                
+                                </div>
+                                
+                                <div class="form-group">
+                                    <!-- Button -->                                        
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-lg btn-primary btn-block" style="background-color:#9966ff; margin-bottom:20px">  Registrati</button>
+                                        <div style="border-top: 1px solid#888; padding-top:15px; font-size:85%"> se hai gia' un account effettua il 
+                                        	<a th:href="@{/login}" style="color: #9966ff"> Login
+                                        	</a>
+                                        </div>  
+                                    </div>
+                                </div>
+
+                            
+                            </form>
+                         </div>
+                    </div>
+              </div>
+
 </body>
+<footer th:replace="fragments/myBase.html :: pie"></footer> 
 </html>

@@ -12,6 +12,7 @@
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 
+<!--BARRA DI NAVIGAZIONE SE NON SEI LOGGATO-->
 <nav th:fragment="navigazione" class="navbar navbar-expand-lg bg-viola-chiaro navbar-dark">
 	<a th:href="@{/index}" class="navbar-brand">Home</a>
 	<ul class="navbar-nav me-auto">
@@ -41,8 +42,8 @@
 	</ul>
 </nav>
 
-
-<nav th:fragment="navigazioneHomepage" class="navbar navbar-expand-lg bg-viola-chiaro navbar-dark">
+<!--BARRA DI NAVIGAZIONE SE SEI LOGGATO-->
+<nav th:fragment="navigazioneLoggato" class="navbar navbar-expand-lg bg-viola-chiaro navbar-dark">
 	<a th:href="index" class="navbar-brand">Home</a>
 	<ul class="navbar-nav me-auto">
 		<li class="nav-item">
@@ -68,11 +69,12 @@
 	</ul>
 </nav>
 
+<!--FOOTER-->
 <footer th:fragment="pie" class="footer mt-auto py-3 bg-light">
-		<div class="container">
-			<span class="text-muted">Inseriamo qualcosa tipo le informazioni</span>
-		</div>
-	</footer>
+	<div class="container">
+		<span class="text-muted">Inseriamo qualcosa tipo le informazioni</span>
+	</div>
+</footer>
 
 
 </html>

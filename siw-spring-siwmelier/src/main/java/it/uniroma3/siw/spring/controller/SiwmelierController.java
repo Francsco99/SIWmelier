@@ -21,8 +21,6 @@ public class SiwmelierController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private boolean viniAggiunti = false;
-
 	@RequestMapping(value="/ricerca", method = RequestMethod.GET)
 	public String getRicerca(Model model, 
 			@RequestParam(value="cerca", required = true) String cerca) {
@@ -43,12 +41,12 @@ public class SiwmelierController {
 		Vino v3 = new Vino("vino3","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",7f);
 		Vino v4 = new Vino("vino4","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",6f);
 	}
+	
+	
 
 	@RequestMapping(value= {"/", "index"}, method = RequestMethod.GET)
 	public String getViniHome(Model model) {
-		/*if(!viniAggiunti) {
-			this.aggiungiViniTest();
-		}*/
+		//this.aggiungiViniTest();
 		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
 		return "index";
