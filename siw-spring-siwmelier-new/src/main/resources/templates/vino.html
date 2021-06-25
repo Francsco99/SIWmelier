@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<link th:href="@{/css/piatti.css}" rel="stylesheet">
+
+<head th:include="fragments/myBase.html :: intestazione"></head>
+
+<nav th:replace="fragments/myBase.html :: navigazione"></nav>
+
+<body>
+	<h2 th:text="${vino.nome}"></h2>
+
+	<section>
+		<div>
+			<a th:href="${vino.immagine}">
+				<img th:src="${vino.immagine}" th:alt="${vino.nome}">
+			</a>
+		</div>
+	</section>
+
+	<section class="description">
+		<h2>Descrizione:</h2>
+		<div th:text="${vino.descrizione}"></div>
+	</section>
+
+	<footer th:replace="fragments/myBase.html :: pie"></footer>
+</body>
+
+</html>

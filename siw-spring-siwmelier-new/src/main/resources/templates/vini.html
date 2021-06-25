@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<link th:href="@{/css/piatti.css}" rel="stylesheet">
+
+<head th:include="fragments/myBase.html :: intestazione"></head>
+
+<nav th:replace="fragments/myBase.html :: navigazione"></nav>
+
+<body>
+	<div>
+		<ul>
+			<li th:each="vino : ${vini}">
+				<a th:href="@{'/vino' + '/' + ${vino.id}}" th:text="${vino.nome}"></a>
+			</li>
+		</ul>
+	</div>
+
+	<footer th:replace="fragments/myBase.html :: pie"></footer>
+
+</body>
+</html>
