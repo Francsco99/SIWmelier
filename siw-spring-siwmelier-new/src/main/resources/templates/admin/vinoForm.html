@@ -1,10 +1,10 @@
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/myBase.html :: intestazione"></head>
 
+<nav th:replace="fragments/myBase.html :: navigazioneAdmin"></nav>
+
 <body class="text-center">
-
-	<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
-
 
 	<div>
 		<h2 style="margin:30px">Inserisci i dati del vino:</h2>
@@ -127,4 +127,5 @@
 
 	<footer th:replace="fragments/myBase.html :: pie"></footer>
 </body>
+
 </html>

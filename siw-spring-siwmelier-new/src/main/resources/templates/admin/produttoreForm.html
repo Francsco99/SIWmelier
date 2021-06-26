@@ -5,9 +5,67 @@
 
 <head th:include="fragments/myBase.html :: intestazione"></head>
 
-<nav th:replace="fragments/myBase.html :: navigazione"></nav>
+<nav th:replace="fragments/myBase.html :: navigazioneAdmin"></nav>
 
-<body></body>
+<body class="text-center">
+	
+	<div>
+		<h2 style="margin:30px">Inserisci i dati del vino:</h2>
+	</div>
+
+	<form th:action="@{/admin/inserisciProduttore}" method="POST" th:object="${produttore}">
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					
+					<div class="form-group">
+						<label for="myFormInput">Nome</label>
+						<input type="text" 
+						th:field="*{nome}" 
+						class="form-control" 
+						id="myFormInput" 
+						placeholder="Nome">
+						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="myFormInput-2">Descrizione</label>
+						<input type="text" th:field="*{descrizione}" class="form-control" id="myFormInput-2" placeholder="Descrizione">
+						<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+					</div>
+
+					<div class="form-group">
+						<select th:field="*{regioni}" class="select" multiple="multiple">
+							<option th:each="regione : ${regioni}"
+							th:field="*{regioni}"
+							th:value="${regione.id}"
+							th:text="${regione.nome}">
+						</option>
+					</select>
+				</div>
+
+				<div class="form-group">
+						<select th:field="*{viniProdotti}" class="select" multiple>
+							<option th:each="vino : ${vini}"
+							th:field="*{viniProdotti}"
+							th:value="${vino.id}" 
+							th:text="${vino.nome}">
+						</option>
+					</select>
+				</div>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="submit" class="btn btn-lg btn-primary btn-block">Aggiungi produttore</button>
+			</div>
+		</div>
+	</div>
+</form>
 
 <footer th:replace="fragments/myBase.html :: pie"></footer>
+
+</body>
 </html>

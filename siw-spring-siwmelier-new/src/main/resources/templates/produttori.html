@@ -7,7 +7,14 @@
 
 <nav th:replace="fragments/myBase.html :: navigazione"></nav>
 
-<body></body>
+<body>
+	<h2>Produttori:</h2>
+	<ul>
+		<li th:each="produttore : ${produttori}" th:text="${produttore.nome}">
+			
+		</li>
+	</ul>
+</body>
 
 <footer th:replace="fragments/myBase.html :: pie"></footer>
 </html>

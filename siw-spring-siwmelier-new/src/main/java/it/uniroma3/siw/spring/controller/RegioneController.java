@@ -74,7 +74,7 @@ public class RegioneController {
 	 * il link della pagina regioni*/
 	@RequestMapping(value = "/regioni", method = RequestMethod.GET)
 	public String getRegioni(Model model) {
-		//this.aggiungiRegioniTest();
+		this.aggiungiRegioniTest();
 		model.addAttribute("regioni", this.regioneService.tutteAlfabetico());
 		return "regioni.html";
 	}

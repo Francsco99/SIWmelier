@@ -1,5 +1,8 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +13,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Produttore;
+import it.uniroma3.siw.spring.model.Regione;
+import it.uniroma3.siw.spring.model.Vino;
 import it.uniroma3.siw.spring.service.ProduttoreService;
+import it.uniroma3.siw.spring.service.RegioneService;
 import it.uniroma3.siw.spring.service.VinoService;
 import it.uniroma3.siw.spring.validator.ProduttoreValidator;
 
@@ -24,6 +31,9 @@ public class ProduttoreController {
 
 	@Autowired
 	private VinoService vinoService;
+	
+	@Autowired
+	private RegioneService regioneService;
 
 	@Autowired
 	private ProduttoreValidator produttoreValidator;
@@ -55,6 +65,8 @@ public class ProduttoreController {
 	public String addProduttore(Model model) {
 		logger.debug("PASSO ALLA FORM addProduttore");
 		model.addAttribute("produttore", new Produttore());
+		model.addAttribute("vini", vinoService.tuttiOrdinatiAlfabetico());
+		model.addAttribute("regioni", this.regioneService.tutteAlfabetico());
 		return "/admin/produttoreForm.html";
 	}
 
@@ -66,10 +78,36 @@ public class ProduttoreController {
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, passo alla conferma");
 			this.produttoreService.inserisci(produttore);
+			
+			//devo settare la many to many, quindi prendo prima tutte
+			//le regioni che ho selezionato dalla form
+			List<Regione> regioni = produttore.getRegioni();
+			
+			//poi per ogni regioni prendo i produttori esistenti
+			for(Regione r : regioni) {
+				List<Produttore> produttori =r.getProduttori();
+				
+				//ci aggiungo quello corrente alla lista
+				produttori.add(produttore);
+				
+				//faccio il set della lista aggiornata
+				r.setProduttori(produttori);
+				
+				//il metodo save se già esiste un oggetto con quell'id
+				//funziona come un UPDATE
+				regioneService.inserisci(r);
+			}
+			
+			//IDEA SIMILE A QUELLA DELLE REGIONI
+			List<Vino> viniProd = produttore.getViniProdotti();
+			for(Vino v : viniProd) {
+				v.setProduttore(produttore);
+				vinoService.inserisci(v);
+			}
+			
+			model.addAttribute("produttori", this.produttoreService.tutti());
 			return "produttori.html";
 		}
 		return "/admin/produttoreForm.html";
 	}
-
-
 }

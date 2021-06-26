@@ -16,7 +16,7 @@ public class Regione {
 	private String nome;
 	
 	@ManyToMany
-	private List<Regione> produttori;
+	private List<Produttore> produttori;
 
 	public Regione() {
 		
@@ -42,11 +42,18 @@ public class Regione {
 		this.nome = nome;
 	}
 
-	public List<Regione> getProduttori() {
+	public List<Produttore> getProduttori() {
 		return produttori;
 	}
 
-	public void setProduttori(List<Regione> produttori) {
+	public void setProduttori(List<Produttore> produttori) {
 		this.produttori = produttori;
 	}
+
+	@Override
+	public String toString() {
+		return "Regione [nome=" + nome + "]";
+	}
+	
+	
 }
