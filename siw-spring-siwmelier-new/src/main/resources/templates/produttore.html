@@ -12,12 +12,14 @@
 
 	<div th:text="${produttore.descrizione}"></div>
 
-	<!--<ul>
+	<h3>Regioni in cui produce:</h3>
+	<ul>
 		<li th:each="regione : ${produttore.regioni}">
 			<a th:href="@{'/regione'+'/'+${regione.id}}" th:text="${regione.nome}"></a>
 		</li>
-	</ul>-->
+	</ul>
 
+	<h3>Vini che produce: </h3>
 	<ul>
 		<li th:each="vino : ${produttore.viniProdotti}">
 			<a th:href="@{'/vino'+'/'+${vino.id}}" th:text="${vino.nome}"></a>

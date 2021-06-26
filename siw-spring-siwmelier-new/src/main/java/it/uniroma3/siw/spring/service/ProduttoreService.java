@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Produttore;
+import it.uniroma3.siw.spring.model.Regione;
 import it.uniroma3.siw.spring.repository.ProduttoreRepository;
 
 @Service
@@ -54,5 +55,9 @@ public class ProduttoreService {
 		return this.produttoreRepository.findByNome(nome);
 	}
 
+	@Transactional
+	public List<Produttore> produttoriPerRegione(Regione regione){
+		return this.produttoreRepository.findByRegioni(regione);
+	}
 }
 

@@ -5,7 +5,17 @@
 
 <nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
 
+<body>
 <h2 th:if="${regione.nome} == 'valledaosta'">valle d' aosta</h2>
 <h2 th:unless="${regione.nome} == 'valledaosta'" th:text="${regione.nome}"></h2>
 
+<h3>Produttori di questa regione:</h3>
+<ul>
+	<li th:each="produttore : ${produttori}">
+		<a th:href="@{'/produttore'+'/'+${produttore.id}}" th:text="${produttore.nome}"></a>
+	</li>
+</ul>
+
+<footer th:replace="fragments/myBase.html :: pie"></footer>
+</body>
 </html>
