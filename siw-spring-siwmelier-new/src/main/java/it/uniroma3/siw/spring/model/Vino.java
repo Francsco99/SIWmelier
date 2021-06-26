@@ -30,13 +30,13 @@ public class Vino {
 	private Float prezzo;
 	
 	//@Column(nullable=false)
-	private Colore colore;
+	private String colore;
 	
 	//@Column(nullable=false)
-	private Effervescenza effervescenza;
+	private Float effervescenza;
 	
 	//@Column(nullable=false)
-	private Corposita corposita;
+	private Float corposita;
 	
 	private String immagine;
 	
@@ -100,12 +100,12 @@ public class Vino {
 		this.voto = voto;
 	}
 
-	public Float getGradazioneAlcolica() {
+	public Float getGradazione() {
 		return gradazione;
 	}
 
-	public void setGradazioneAlcolica(Float gradazioneAlcolica) {
-		this.gradazione = gradazioneAlcolica;
+	public void setGradazione(Float gradazione) {
+		this.gradazione = gradazione;
 	}
 
 	public Float getPrezzo() {
@@ -116,27 +116,27 @@ public class Vino {
 		this.prezzo = prezzo;
 	}
 
-	public Colore getColore() {
+	public String getColore() {
 		return colore;
 	}
 
-	public void setColore(Colore colore) {
+	public void setColore(String colore) {
 		this.colore = colore;
 	}
 
-	public Effervescenza getEffervescenza() {
+	public Float getEffervescenza() {
 		return effervescenza;
 	}
 
-	public void setEffervescenza(Effervescenza effervescenza) {
+	public void setEffervescenza(Float effervescenza) {
 		this.effervescenza = effervescenza;
 	}
 
-	public Corposita getCorposita() {
+	public Float getCorposita() {
 		return corposita;
 	}
 
-	public void setCorposita(Corposita corposita) {
+	public void setCorposita(Float corposita) {
 		this.corposita = corposita;
 	}
 

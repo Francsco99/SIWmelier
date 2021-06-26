@@ -68,23 +68,16 @@ public class VinoController {
 	//	}
 
 
-
-	/*Popola la form*/
-	@RequestMapping(value="/admin/addVino", method = RequestMethod.GET)
-	public String addVino(Model model) {
-		logger.debug("PASSO ALLA FORM addVino");
-		model.addAttribute("vino", new Vino());
-		return "/admin/vinoForm.html";
-	}
-
 	/*Si occupa di gestire la richiesta quando viene selezionato
 	 * un vino dalla pagina dei vari vini*/
 	@RequestMapping(value = "/vino/{id}", method = RequestMethod.GET)
 	public String getVino(@PathVariable("id") Long id, Model model) {
 		Vino vino = this.vinoService.vinoPerId(id);
 		List<Piatto> piatti = vino.getPiatti();
+		Produttore prod = vino.getProduttore();
 		model.addAttribute("vino", vino);
 		model.addAttribute("piatti", piatti);
+		model.addAttribute("produttore", prod);
 		logger.debug("***PIATTI VINO:  "+vino.getPiatti().toString());
 		return "vino.html";
 	}
@@ -115,6 +108,16 @@ public class VinoController {
 		return "vini.html";
 	}
 
+	/*Popola la form*/
+	@RequestMapping(value="/admin/addVino", method = RequestMethod.GET)
+	public String addVino(Model model) {
+		logger.debug("PASSO ALLA FORM addVino");
+		model.addAttribute("vino", new Vino());
+		model.addAttribute("piatti", this.piattoService.tutti());
+		model.addAttribute("produttori", this.produttoreService.tutti());
+		return "/admin/vinoForm.html";
+	}
+	
 	/*raccoglie e valida i dati della form*/
 	@RequestMapping(value = "/admin/inserisciVino", method = RequestMethod.POST)
 	public String newProduttore(@ModelAttribute("vino") Vino vino, 

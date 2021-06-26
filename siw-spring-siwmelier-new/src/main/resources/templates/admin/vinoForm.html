@@ -1,60 +1,130 @@
-<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-
 <head th:replace="fragments/myBase.html :: intestazione"></head>
 
-<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
+<body class="text-center">
 
-<body>
+	<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
+
+
 	<div>
-		<h4>Inserisci i dati del vino che vuoi inserire:</h4>
+		<h2 style="margin:30px">Inserisci i dati del vino:</h2>
 	</div>
-	
+
 	<form th:action="@{/admin/inserisciVino}" method="POST" th:object="${vino}">
 
-		<div class="form-group">
-			<label for="formGroupExampleInput">Nome</label>
-			<input type="text" th:field="*{nome}" class="form-control" id="formGroupExampleInput" placeholder="nome">
-			<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
-		</div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					
+					<div class="form-group">
+						<label for="myFormInput">Nome</label>
+						<input type="text" 
+						th:field="*{nome}" 
+						class="form-control" 
+						id="myFormInput" 
+						placeholder="Nome">
+						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					</div>
 
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Colore</label>
-			<input type="text" th:field="*{colore}" class="form-control" id="formGroupExampleInput2" placeholder="colore">
-			<span th:if="${#fields.hasErrors('colore')}" th:errors="*{colore}"></span>
-		</div>
+					<div class="form-group">
+						<label for="myFormInput-2">Descrizione</label>
+						<input type="text" th:field="*{descrizione}" class="form-control" id="myFormInput-2" placeholder="Descrizione">
+						<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
+					</div>
 
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Descrizione</label>
-			<input type="text" th:field="*{descrizione}" class="form-control" id="formGroupExampleInput2" placeholder="descrizione">
-			<span th:if="${#fields.hasErrors('descrizione')}" th:errors="*{descrizione}"></span>
-		</div>
+					<div class="form-group">
+						<label for="myFormInput-2">Anno di imbottigliamento</label>
+						<input type="text" th:field="*{annoImbottigliamento}" class="form-control" id="myFormInput-2" placeholder="Anno">
+						<span th:if="${#fields.hasErrors('annoImbottigliamento')}" th:errors="*{annoImbottigliamento}">
+						</span>
+					</div>
 
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Voto</label>
-			<input type="text" th:field="*{voto}" class="form-control" id="formGroupExampleInput2" placeholder="voto">
-			<span th:if="${#fields.hasErrors('voto')}" th:errors="*{voto}"></span>
-		</div>
+					<div class="form-group">
+						<label for="myFormInput-2">Immagine</label>
+						<input type="text" th:field="*{immagine}" class="form-control" id="myFormInput-2" placeholder="Url immagine">
+						<span th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
+					</div>
 
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Immagine</label>
-			<input type="text" th:field="*{immagine}" class="form-control" id="formGroupExampleInput2" placeholder="immagine">
-			<span th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
-		</div>
+				</div>
 
-		<div class="form-group">
-			<label for="formGroupExampleInput2">Anno di imbottigliamento</label>
-			<input type="text" th:field="*{annoImbottigliamento}" class="form-control" id="formGroupExampleInput2" placeholder="annoImbottigliamento">
-			<span th:if="${#fields.hasErrors('annoImbottigliamento')}" th:errors="*{annoImbottigliamento}"></span>
-		</div>
+				<div class="col">
+					<div class="form-group"> 
+						<label>Voto:</label>
+						<select th:field="*{voto}">
+							<option value="0">0</option>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+							<option value="6">6</option>
+							<option value="7">7</option>
+							<option value="8">8</option>
+							<option value="9">9</option>
+							<option value="10">10</option>
+						</select>
+						<span th:if="${#fields.hasErrors('voto')}" th:errors="*{voto}"></span>
+					</div>
 
+					<div class="form-group"> 
+						<label>Colore:</label>					
+						<select th:field="*{colore}">
+							<option value="0"> -- seleziona un colore -- </option>
+							<option value="Rosso">Rosso</option>
+							<option value="Bianco">Bianco</option>
+							<option value="Rosato">Rosato</option>
+						</select>
+						<span th:if="${#fields.hasErrors('colore')}" th:errors="*{colore}"></span>
+					</div>
 
-		<div class="col-sm-10">
-			<button type="submit" class="btn btn-primary">Aggiungi vino</button>
+					<div for="customRange2" class="form-group">
+						<label>Corposità:</label>
+						<input type="range" class="custom-range" min="0" max="5" id="customRange2" th:field="*{corposita}">
+					</div>
+
+					<div for="customRange2" class="form-group">
+						<label>Effervescenza:</label>
+						<input type="range" class="custom-range" min="0" max="5" id="customRange2" th:field="*{effervescenza}">
+					</div>
+
+					<div class="form-group">
+						<label>Gradazione alcolica:</label>
+						<input type="text" 
+						th:field="*{gradazione}" 
+						class="form-control" 
+						id="myFormInput" 
+						placeholder="Gradazione alcolica">
+						<span th:if="${#fields.hasErrors('gradazione')}" th:errors="*{gradazione}"></span>
+					</div>
+
+					<div class="form-group">
+						<label>Piatto:</label>
+						<select th:field =*{piatti}>
+							<option value="0"> -- seleziona un piatto -- </option>
+							<option th:value="${piatto.id}" th:each="piatto :${piatti}" th:text="${piatto.nome}"></option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label>Produttore:</label>
+						<select th:field =*{produttore}>
+							<option value="0"> -- seleziona un produttore -- </option>
+							<option  th:value="${produttore.id}" th:each="produttore :${produttori}" 
+							th:text="${produttore.nome}"></option>
+						</select>
+					</div>
+
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col">
+					<button type="submit" class="btn btn-lg btn-primary btn-block">Aggiungi vino</button>
+				</div>
+			</div>
 		</div>
 	</form>
 
-<footer th:replace="fragments/myBase.html :: pie"></footer>
-
+	<footer th:replace="fragments/myBase.html :: pie"></footer>
 </body>
 </html>

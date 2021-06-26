@@ -44,6 +44,10 @@
   }
 }
 
+.form-group{
+  margin-bottom: 20px;
+}
+
 .my-zoom:hover{
   transform: scale(1.1);
   transition: all .2s linear;
@@ -4449,7 +4453,8 @@ textarea.form-control-lg {
 .card-img,
 .card-img-top,
 .card-img-bottom {
-  object-fit: cover;
+  object-fit: contain;
+  max-height: 250px;
 }
 
 .card-img,

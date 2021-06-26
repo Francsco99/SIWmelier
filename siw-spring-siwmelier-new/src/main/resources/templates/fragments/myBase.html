@@ -110,12 +110,10 @@
 				</a>
 				<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 					<a class="dropdown-item" th:href="@{/admin/addVino}">Aggiungi Vino</a>
-					<a class="dropdown-item" th:href="@{/admin/addRegione}">Aggiungi Regione</a>
 					<a class="dropdown-item" th:href="@{/admin/addProduttore}">Aggiungi Produttore</a>
 					<a class="dropdown-item" th:href="@{/admin/addPiatto}">Aggiungi Piatto</a>
 					<div class="dropdown-divider"></div>
 					<a class="dropdown-item" href="#">Cancella Vino</a>
-					<a class="dropdown-item" href="#">Cancella Regione</a>
 					<a class="dropdown-item" href="#">Cancella Produttore</a>
 					<a class="dropdown-item" href="#">Cancella Piatto</a>
 				</div>
@@ -150,9 +148,11 @@
 					<div class="card" th:each="vino, iterStat : ${viniDecr}" 
 					th:if="${vino.voto > 7 and iterStat.index < 4}">
 					<h5 class="card-title" th:text="${vino.nome}"></h5>
-					<img class="card-img-top" th:src="${vino.immagine}" alt="Card image cap">
+					<a th:href="@{'/vino'+'/'+${vino.id}}" class="mx-auto">
+						<img  class="card-img-top" th:src="${vino.immagine}" alt="Card image cap">
+					</a>
 					<div class="card-body">
-						<p class="card-text">DESCRIZIONE</p>
+						<p class="card-text" th:text="${#strings.substring(vino.descrizione,0,80) + '...'}"></p>
 					</div>
 					<div class="card-footer" th:text="${vino.voto}"></div>
 				</div>
@@ -171,17 +171,17 @@
   			E' PARI ALLORA METTI LA FOTO A DESTRA, ALTRIMENTI A SINISTRA   -->
   			<hr class="featurette-divider">
   			<h1 class="my-title">Gli ultimi aggiunti: </h1>
-  			<div th:each="vino,iterStat : ${viniCresc}">
+  			<div th:each="vino,iterStat : ${viniCresc}" th:if="${iterStat.index < 6}">
 
   				<div class="row featurette">
   					<div th:class="${iterStat.even}? 'col-md-7' : 'col-md-7 order-md-2'" >
   						<h2 class="my-featurette-title" th:text="${vino.nome}"></h2>
   						<p class="lead" th:text=${vino.descrizione}></p>
   					</div>
-  					<div th:class="${iterStat.even}? 'col-md-5' : 'col-md-5 order-md-1'">
+  					<div th:class="${iterStat.even}? 'col-md-5 my-zoom' : 'col-md-5 order-md-1 my-zoom'">
   						<a th:href="@{'/vino'+'/'+${vino.id}}">
-  						<img th:src="${vino.immagine}" 
-  						class="my-img-fluid mx-auto">
+  							<img th:src="${vino.immagine}" 
+  							class="my-img-fluid mx-auto">
   						</a>
   					</div>
   				</div>
