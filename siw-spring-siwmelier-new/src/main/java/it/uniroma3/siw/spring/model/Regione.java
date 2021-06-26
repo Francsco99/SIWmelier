@@ -41,4 +41,12 @@ public class Regione {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+
+	public List<Regione> getProduttori() {
+		return produttori;
+	}
+
+	public void setProduttori(List<Regione> produttori) {
+		this.produttori = produttori;
+	}
 }

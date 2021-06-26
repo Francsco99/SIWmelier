@@ -192,15 +192,105 @@
   		</div><!-- /.container -->
   	</div>
 
-  	<!--FOOTER-->
-  	<footer class="container" th:fragment="pie">
-  		<p class="float-end"><a href="#">Back to top</a></p>
-  		<p>&copy; 2017–2021 Siwmelier 
-  			&middot; <a href="#">Privacy</a> 
-  			&middot; <a href="#">Termini</a>
-  			&middot; <a href="#">Condizioni d'uso</a>
-  		</p>
-  	</footer>
+
+  	<div th:fragment="vino">
+  		<div class="container">
+  			<div class="row mx-auto" style="margin-top: 10px;">
+  				<div class="col">
+  					<img th:src="${vino.immagine}" class="rounded float-left my-immagine-vino" width="500" height="500">
+  				</div>
+
+  				<div class="col">
+  					<h2 th:text="${vino.nome}"></h2>
+  					<a class="text-muted my-produttore" th:href="@{'/produttore'+'/'+${produttore.id}}" th:text="${produttore.nome}"></a>
+  					<div class="text-muted" th:text="${vino.descrizione}"></div>
+
+  					<hr>
+
+  					<div class="row">
+  						<div class="col">
+  							<h6>Colore</h6>
+  						</div>
+  						<div class="col">
+  							<p th:text="${vino.colore}">COLORE</p>
+  						</div>
+  					</div>
+
+  					<div class="row">
+  						<div class="col">
+  							<h6>Effervescenza</h6>
+  						</div>
+  						<div class="col">
+  							<p th:text="${vino.effervescenza}">EFFERVESCENZA</p>
+  						</div>
+  					</div>
+
+  					<div class="row">
+  						<div class="col">
+  							<h6>Corposità</h6>
+  						</div>
+  						<div class="col">
+  							<p th:text="${vino.corposita}">CORPOSITA'</p>
+  						</div>
+  					</div>
+
+  					<div class="row">
+  						<div class="col">
+  							<h6>Gradazione alcolica</h6>
+  						</div>
+  						<div class="col">
+  							<p th:text="${vino.gradazione} +'&deg;'">GRADAZIONE</p>
+  						</div>
+  					</div>
+
+  					<div class="row">
+  						<div class="col">
+  							<h6>Annata</h6>
+  						</div>
+  						<div class="col">
+  							<p th:text="${vino.annoImbottigliamento}">ANNO</p>
+  						</div>
+  					</div>
+
+  					<div class="row">
+  						<div class="col">
+  							<h6>Voto</h6>
+  						</div>
+  						<div class="col">
+  							<p th:text="${vino.voto}">VOTO</p>
+  						</div>
+  					</div>
+
+  				</div>
+  			</div>
+  		</div>
+
+  		<hr>
+
+  		<div class="row">
+  			<h2>Abbinamenti con questo vino: </h2>
+  			<div class="card-deck">
+  				<div class="card" th:each="piatto: ${piatti}">
+  					<h5 class="card-title" th:text="${piatto.nome}"></h5>
+  					<img class="card-img-top" th:src="${piatto.immagine}" alt="Card image cap">
+  					<div class="card-body">
+  					</div>
+  				</div>
+  			</div>
+  		</div>
+  	</div>
+  </div>
 
 
-  	</html>
+  <!--FOOTER-->
+  <footer class="container" th:fragment="pie">
+  	<p class="float-end"><a href="#">Back to top</a></p>
+  	<p>&copy; 2017–2021 Siwmelier 
+  		&middot; <a href="#">Privacy</a> 
+  		&middot; <a href="#">Termini</a>
+  		&middot; <a href="#">Condizioni d'uso</a>
+  	</p>
+  </footer>
+
+
+  </html>

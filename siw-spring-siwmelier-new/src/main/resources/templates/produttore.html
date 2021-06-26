@@ -7,7 +7,23 @@
 
 <nav th:replace="fragments/myBase.html :: navigazione"></nav>
 
-<body></body>
+<body>
+	<h2 th:text="${produttore.nome}"></h2>
+
+	<div th:text="${produttore.descrizione}"></div>
+
+	<!--<ul>
+		<li th:each="regione : ${produttore.regioni}">
+			<a th:href="@{'/regione'+'/'+${regione.id}}" th:text="${regione.nome}"></a>
+		</li>
+	</ul>-->
+
+	<ul>
+		<li th:each="vino : ${produttore.viniProdotti}">
+			<a th:href="@{'/vino'+'/'+${vino.id}}" th:text="${vino.nome}"></a>
+		</li>
+	</ul>
+</body>
 
 <footer th:replace="fragments/myBase.html :: pie"></footer>
 </html>

@@ -27,8 +27,8 @@ public class Produttore {
 	private List<Regione> regioni;
 
 	public Produttore() {
-		this.viniProdotti = new ArrayList<>();
-		this.regioni = new ArrayList<>();
+		this.setViniProdotti(new ArrayList<>());
+		this.setRegioni(new ArrayList<>());
 	}
 
 	public Produttore(String nome, String descrizione) {
@@ -58,5 +58,21 @@ public class Produttore {
 
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
+	}
+
+	public List<Vino> getViniProdotti() {
+		return viniProdotti;
+	}
+
+	public void setViniProdotti(List<Vino> viniProdotti) {
+		this.viniProdotti = viniProdotti;
+	}
+
+	public List<Regione> getRegioni() {
+		return regioni;
+	}
+
+	public void setRegioni(List<Regione> regioni) {
+		this.regioni = regioni;
 	}
 }
