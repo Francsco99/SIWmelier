@@ -193,6 +193,8 @@
   	</div>
 
 
+
+
   	<div th:fragment="vino">
   		<div class="container">
   			<div class="row mx-auto" style="margin-top: 10px;">
@@ -269,11 +271,11 @@
 
   		<div class="row">
   			<h2>Abbinamenti con questo vino: </h2>
-  			<div class="card-deck">
-  				<div class="card" th:each="piatto: ${piatti}">
-  					<h5 class="card-title" th:text="${piatto.nome}"></h5>
-  					<img class="card-img-top" th:src="${piatto.immagine}" alt="Card image cap">
-  					<div class="card-body">
+  			<div class="row">
+  				<div th:each="piatto: ${piatti}">
+  					<div class="col rounded-circle" style="border-width: 2px; border-color: black; 
+  					overflow: hidden; max-height: 300px; max-width: 300px;" >
+  					<img th:src="${piatto.immagine}" style="object-fit: scale-down;">
   					</div>
   				</div>
   			</div>

@@ -108,8 +108,8 @@
 
 					<div class="form-group">
 						<label>Piatto:</label>
-						<select th:field =*{piatti}>
-							<option value="0"> -- seleziona un piatto -- </option>
+						<select th:field =*{piatti} multiple="multiple">
+							<option value="0"> -- seleziona uno o più piatti -- </option>
 							<option th:each="piatto :${piatti}"
 							th:field="*{piatti}"
 							th:value="${piatto.id}" 
