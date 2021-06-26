@@ -24,6 +24,11 @@ public class Catalogo {
 	public Catalogo() {
 		
 	}
+	
+	public Catalogo(String nome, String descrizione) {
+		this.nome = nome;
+		this.descrizione = descrizione;
+	}
 
 	public Long getId() {
 		return id;

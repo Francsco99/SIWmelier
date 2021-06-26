@@ -1,22 +1,68 @@
-<!DOCTYPE HTML>
-<html xmlns:th="http://www.thymeleaf.org">
+<!DOCTYPE html>
+<html html xmlns:th="http://www.thymeleaf.org">
 
-<link th:href="@{/css/piatti.css}" rel="stylesheet">
+<head th:replace="fragments/myBase.html :: intestazione">
+  <link th:href="@{/css/carousel.css}" rel="stylesheet">
+  <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
-<head th:include="fragments/myBase.html :: intestazione"></head>
+</head>
 
-<nav th:replace="fragments/myBase.html :: navigazione"></nav>
+<header>
+  <nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
+</header>
 
 <body>
-	<div>
-		<ul>
-			<li th:each="vino : ${vini}">
-				<a th:href="@{'/vino' + '/' + ${vino.id}}" th:text="${vino.nome}"></a>
-			</li>
-		</ul>
-	</div>
 
-	<footer th:replace="fragments/myBase.html :: pie"></footer>
+  <main>
+    <section class="py-5 text-center container">
+      <div class="row py-lg-5">
+        <div class="col-lg-6 col-md-8 mx-auto">
+          <h1 class="fw-light">Esplora i nostri vini</h1>
+          <p class="lead text-muted">Clicca sull'immagine per arrivare alla pagina delle informazioni
+            complete sul vino. 
+            Premi sul bottone "Dettaglio" per leggere la descrizione di un vino.
+          Usa i pulsanti qua sotto per scegliere l'ordinamento che più ti piace.</p>
+          <p>
+            <a th:href="@{/viniAlfabetico}" class="btn btn-secondary my-2">Alfabetico</a>
+            <a th:href="@{/viniVotoCrescente}" class="btn btn-secondary my-2">Voto crescente</a>
+            <a th:href="@{/viniVotoDecrescente}" class="btn btn-secondary my-2">Voto decrescente</a>
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <div class="album py-5 bg-light">
+      <div class="container">
+
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col" th:each="vino : ${vini}">
+            <div class="card shadow-sm my-zoom">
+              <a class="bd-placeholder-img card-img-top mx-auto"
+              th:href="@{'/vino' + '/' + ${vino.id}}">
+              <img th:src="${vino.immagine}" height="250px">
+            </a>
+            <div class="card-body">
+              <p class="card-text collapse" th:id="'card_'+${vino.id}" th:text="${vino.descrizione}"></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button class="btn btn-sm btn-outline-secondary" type="button" data-toggle="collapse" th:attr="data-target='#card_'+${vino.id}">
+                  Dettaglio</button>
+                </div>
+                <small class="text-muted" th:text="${vino.voto}"></small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer th:replace = "fragments/myBase.html :: pie"></footer>
+
+</main>
 
 </body>
+
 </html>

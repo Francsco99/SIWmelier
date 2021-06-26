@@ -20,7 +20,7 @@ public class Produttore {
 	@Lob
 	private String descrizione;
 	
-	@OneToMany(mappedBy="produttore")
+	@OneToMany(mappedBy = "produttore")
 	private List<Vino> viniProdotti;
 	
 	@ManyToMany(mappedBy="produttori")
@@ -31,6 +31,11 @@ public class Produttore {
 		this.regioni = new ArrayList<>();
 	}
 
+	public Produttore(String nome, String descrizione) {
+		this.nome = nome;
+		this.descrizione = descrizione;
+	}
+	
 	public Long getId() {
 		return id;
 	}

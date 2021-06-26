@@ -1,5 +1,9 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,18 +25,38 @@ public class SiwmelierController {
 
 	private Logger logger = LoggerFactory.getLogger(this.getClass());
 
+
+	/*funzione di appoggio per la ricerca con una parola chiave*/
+	private List<Vino> ricercaVini(String parolaChiave){
+		String cercaLower = parolaChiave.toLowerCase();
+		List<String> parole = Arrays.asList(cercaLower.split(" "));
+		List<Vino> vini = new ArrayList<>();
+		logger.debug("Hai cercato" + cercaLower);
+
+		for(String parola : parole) {
+
+			logger.debug("Sto cercando corrispondenze con: "+ parola);
+
+			for(Vino v : this.vinoService.viniPerNome(parola)) {
+				vini.add(v);
+			}
+		}
+		return vini;
+	}
+
+	/*gestisce la richiesta da parte della vista per la ricerca
+	 * con una parola chiave*/
 	@RequestMapping(value="/ricerca", method = RequestMethod.GET)
 	public String getRicerca(Model model, 
 			@RequestParam(value="cerca", required = true) String cerca) {
 
-		String cercaLower = cerca.toLowerCase();
+		List<Vino> vini = this.ricercaVini(cerca);
+		model.addAttribute("vini",vini);
+		model.addAttribute("cerca", cerca);
 
-		logger.debug("Hai cercato" + cercaLower);
-
-		return null;
+		return "risultatoRicerca.html";
 	}
-
-
+	
 	/*funzione test per aggiungere vini*/
 	private void aggiungiViniTest() {
 		Vino v5 = new Vino("vino5","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",10f);
@@ -46,8 +70,6 @@ public class SiwmelierController {
 		this.vinoService.inserisci(v4);
 		this.vinoService.inserisci(v5);
 	}
-	
-	
 
 	@RequestMapping(value= {"/", "index"}, method = RequestMethod.GET)
 	public String getViniIndex(Model model) {
@@ -55,21 +77,5 @@ public class SiwmelierController {
 		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
 		return "index";
-	}
-	
-	@RequestMapping(value= {"home"}, method = RequestMethod.GET)
-	public String getViniHome(Model model) {
-		//this.aggiungiViniTest();
-		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
-		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
-		return "home";
-	}
-	
-	@RequestMapping(value= {"adminHome"}, method = RequestMethod.GET)
-	public String getViniHomeAdmin(Model model) {
-		//this.aggiungiViniTest();
-		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
-		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
-		return "/admin/homeAdmin";
 	}
 }

@@ -8,6 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import java.util.Arrays;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -30,12 +34,27 @@ public class CatalogoController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	
+	/*funzione temporanea per aggiungere i cataloghi*/
+	private void aggiungiCataloghi() {
+		
+		Catalogo c1 = new Catalogo("doc", "Denominazione di origine controllata");
+		Catalogo c2 = new Catalogo("docg", "Denominazione di origine controllata e garantita");
+		Catalogo c3 = new Catalogo("dop", "Denominazione di origine protetta");
+		Catalogo c4 = new Catalogo("vdt", "Vino da tavola");
+		
+		List<Catalogo> cat = Arrays.asList(c1,c2,c3,c4);
+		for(Catalogo c : cat) {
+			this.catalogoService.inserisci(c);
+		}
+	}
+	
 	/*Popola la form*/
-	@RequestMapping(value="/addCatalogo", method = RequestMethod.GET)
+	@RequestMapping(value="/admin/addCatalogo", method = RequestMethod.GET)
 	public String addCatalogo(Model model) {
 		logger.debug("PASSO ALLA FORM addCatalogo");
 		model.addAttribute("catalogo", new Catalogo());
-		return "catalogoForm.html";
+		return "/admin/catalogoForm.html";
 	}
 	
 	/*Si occupa di gestire la richiesta quando viene selezionato
@@ -54,12 +73,14 @@ public class CatalogoController {
 	 * il link della pagina cataloghi*/
 	@RequestMapping(value = "/cataloghi", method = RequestMethod.GET)
 	public String getCataloghi(Model model) {
-		model.addAttribute("cataloghi", this.catalogoService.tutti());
+		
+		//this.aggiungiCataloghi();
+		model.addAttribute("cataloghi", this.catalogoService.tuttiCresc());
 		return "cataloghi.html";
 	}
 	
 	/*raccoglie e valida i dati della form*/
-	@RequestMapping(value = "/inserisciCatalogo", method = RequestMethod.POST)
+	@RequestMapping(value = "/admin/inserisciCatalogo", method = RequestMethod.POST)
 	public String newCatalogo(@ModelAttribute("catalogo") Catalogo catalogo, 
 			Model model, BindingResult bindingResult) {
 		this.catalogoValidator.validate(catalogo, bindingResult);
@@ -68,6 +89,6 @@ public class CatalogoController {
 			this.catalogoService.inserisci(catalogo);
 			return "cataloghi.html";
 		}
-		return "catalogoForm.html";
+		return "/admin/catalogoForm.html";
 	} 
 }

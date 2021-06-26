@@ -65,6 +65,11 @@ public class VinoService {
 	}
 	
 	@Transactional
+	public List<Vino> tuttiOrdinatiAlfabetico(){
+		return this.vinoRepository.findByOrderByNomeAsc();
+	}
+	
+	@Transactional
 	public List<Vino> viniPerNome(String nome){
 		return this.vinoRepository.findByNome(nome);
 	}

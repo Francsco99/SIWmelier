@@ -44,6 +44,95 @@
   }
 }
 
+.my-zoom:hover{
+  transform: scale(1.1);
+  transition: all .2s linear;
+}
+.my-immagine-vino{
+  object-fit: contain;
+}
+
+.my-featurette-title{
+  padding-bottom: 20px;
+
+}
+
+.my-title{
+  padding-left: 0px;
+  margin-bottom: 50px;
+}
+
+.my-produttore{
+  margin-top: 10px;
+}
+
+.my-home-title{
+  padding-left: 20px;
+}
+
+/*IMMAGINI PER PAGINA PRINCIPALE */
+.my-bd-placeholder-img {
+  font-size: 1.125rem;
+  text-anchor: middle;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+}
+
+@media (min-width: 768px) {
+  .my-bd-placeholder-img-lg {
+    font-size: 3.5rem;
+  }
+}
+
+/*BARRA DI RICERCA FIHETTA*/
+.searchbar{
+  margin-bottom: auto;
+  margin-top: auto;
+  height: 60px;
+  background-color: #353b48;
+  border-radius: 30px;
+  padding: 10px;
+}
+
+.search_input{
+  color: white;
+  border: 0;
+  outline: 0;
+  background: none;
+  width: 0;
+  caret-color:transparent;
+  line-height: 40px;
+  transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_input{
+  padding: 0 10px;
+  width: 450px;
+  caret-color:red;
+  transition: width 0.4s linear;
+}
+
+.searchbar:hover > .search_icon{
+  background: white;
+  color: #e74c3c;
+}
+
+.search_icon{
+  height: 40px;
+  width: 40px;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  color:white;
+  text-decoration:none;
+}
+
+
+
+
 body {
   margin: 0;
   font-family: var(--bs-font-sans-serif);
@@ -73,8 +162,6 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
   margin-bottom: 0.5rem;
   font-weight: 500;
   line-height: 1.2;
-  padding-top: 20px;
-  padding-left: 20px;
   text-transform: capitalize;
 }
 
@@ -567,6 +654,11 @@ progress {
 .img-fluid {
   max-width: 100%;
   height: auto;
+}
+
+.my-img-fluid {
+  width: auto;
+  max-height: 500px;
 }
 
 .img-thumbnail {
@@ -4293,6 +4385,7 @@ textarea.form-control-lg {
 
 .card-title {
   margin-bottom: 0.5rem;
+  text-align: center;
 }
 
 .card-subtitle {
@@ -4356,7 +4449,7 @@ textarea.form-control-lg {
 .card-img,
 .card-img-top,
 .card-img-bottom {
-  width: 100%;
+  object-fit: cover;
 }
 
 .card-img,

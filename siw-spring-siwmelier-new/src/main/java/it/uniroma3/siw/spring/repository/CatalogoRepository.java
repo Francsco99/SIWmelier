@@ -11,5 +11,7 @@ public interface CatalogoRepository extends CrudRepository<Catalogo, Long> {
 	public List<Catalogo> findByNome(String nome);
 	
 	public List<Catalogo> findAll();
+	
+	public List<Catalogo> findByOrderByNomeAsc();
 
 }

@@ -5,25 +5,59 @@
 
 <head th:include="fragments/myBase.html :: intestazione"></head>
 
-<nav th:replace="fragments/myBase.html :: navigazione"></nav>
+<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
 
 <body>
-	<h2 th:text="${vino.nome}"></h2>
 
-	<section>
-		<div>
-			<a th:href="${vino.immagine}">
-				<img th:src="${vino.immagine}" th:alt="${vino.nome}">
-			</a>
-		</div>
-	</section>
+  <div class="container">
+    <div class="row mx-auto">
+      <div class="col">
+        <img th:src="${vino.immagine}" class="rounded float-left my-immagine-vino" width="500" height="500">
+      </div>
 
-	<section class="description">
-		<h2>Descrizione:</h2>
-		<div th:text="${vino.descrizione}"></div>
-	</section>
+      <div class="col">
+        <h3 class="my-produttore" th:text="${vino.nome}"></h3>
+        <h4 class="text-muted my-produttore" th:text="${vino.produttore.nome}">nome produttore</h4>
+        <div class="text-muted" th:text="${vino.descrizione}"></div>
 
-	<footer th:replace="fragments/myBase.html :: pie"></footer>
+        <hr>
+
+        <div class="row">
+          <div class="col">
+            <h6>Voto</h6>
+          </div>
+          <div class="col">
+            <p th:text="${vino.voto}"></p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col">
+            <h6>Colore</h6>
+          </div>
+          <div class="col">
+            <p th:text="${vino.colore}">COLORE</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <h2>Abbinamenti con questo vino: </h2>
+   <div class="card-deck">
+          <div class="card" th:each="piatto: ${piatti}">
+          <h5 class="card-title" th:text="${piatto.nome}"></h5>
+          <img class="card-img-top" th:src="${piatto.immagine}" alt="Card image cap">
+          <div class="card-body">
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+  <footer th:replace="fragments/myBase.html :: pie"></footer>
 </body>
 
 </html>

@@ -53,4 +53,9 @@ public class CatalogoService {
 	public List<Catalogo> tutti(){
 		return this.catalogoRepository.findAll();
 	}
+	
+	@Transactional
+	public List<Catalogo> tuttiCresc(){
+		return this.catalogoRepository.findByOrderByNomeAsc();
+	}
 }

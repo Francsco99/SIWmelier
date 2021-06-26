@@ -17,6 +17,7 @@ public class Vino {
 	private String nome;
 	
 	//@Column(nullable=false)
+	@Lob
 	private String descrizione;
 	
 	private Float annoImbottigliamento;
@@ -52,10 +53,11 @@ public class Vino {
 		this.nome = nome;
 		this.immagine = immagine;
 		this.voto=voto;
+		this.setPiatti(new ArrayList<>());	
 	}
 	
 	public Vino() {
-		this.piatti = new ArrayList<>();	
+		this.setPiatti(new ArrayList<>());	
 	}
 
 	public Long getId() {
@@ -144,6 +146,22 @@ public class Vino {
 
 	public void setImmagine(String immagine) {
 		this.immagine = immagine;
+	}
+
+	public Produttore getProduttore() {
+		return produttore;
+	}
+
+	public void setProduttore(Produttore produttore) {
+		this.produttore = produttore;
+	}
+
+	public List<Piatto> getPiatti() {
+		return piatti;
+	}
+
+	public void setPiatti(List<Piatto> piatti) {
+		this.piatti = piatti;
 	}
 
 }

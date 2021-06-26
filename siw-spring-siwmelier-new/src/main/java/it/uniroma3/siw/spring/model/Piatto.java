@@ -17,11 +17,18 @@ public class Piatto {
 	@Column(nullable=false)
 	private String nome;
 	
+	private String immagine;
+	
 	@ManyToMany
 	private List<Vino> vini;
 	
 	public Piatto() {
-		this.vini = new ArrayList<>();
+		this.setVini(new ArrayList<>());
+	}
+	
+	public Piatto(String nome) {
+		this.nome = nome;
+		this.setVini(new ArrayList<>());
 	}
 
 	public Long getId() {
@@ -38,6 +45,22 @@ public class Piatto {
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public List<Vino> getVini() {
+		return vini;
+	}
+
+	public void setVini(List<Vino> vini) {
+		this.vini = vini;
+	}
+
+	public String getImmagine() {
+		return immagine;
+	}
+
+	public void setImmagine(String immagine) {
+		this.immagine = immagine;
 	}
 
 }

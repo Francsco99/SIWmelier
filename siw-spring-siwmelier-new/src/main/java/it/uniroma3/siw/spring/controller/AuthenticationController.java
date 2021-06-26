@@ -18,72 +18,72 @@ import it.uniroma3.siw.spring.service.VinoService;
 
 @Controller
 public class AuthenticationController {
-	
+
 	@Autowired
 	private CredentialsService credentialsService;
-	
+
 	@Autowired
 	private UserValidator userValidator;
-	
+
 	@Autowired
 	private CredentialsValidator credentialsValidator;
-	
+
 	@Autowired
 	private VinoService  vinoService;
-	
+
 	@RequestMapping(value = "/register", method = RequestMethod.GET) 
 	public String showRegisterForm (Model model) {
 		model.addAttribute("user", new User());
 		model.addAttribute("credentials", new Credentials());
 		return "registerUser";
 	}
-	
+
 	@RequestMapping(value = "/login", method = RequestMethod.GET) 
 	public String showLoginForm (Model model) {
 		return "loginForm";
 	}
-	
+
 	@RequestMapping(value = "/logout", method = RequestMethod.GET) 
 	public String logout(Model model) {
 		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
 		return "index";
 	}
-	
-    @RequestMapping(value = "/default", method = RequestMethod.GET)
-    public String defaultAfterLogin(Model model) {
-        
-    	UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-    	Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
-    	if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
-    		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
-    		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
-            return "admin/homeAdmin";
-        }
-    	model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
+
+	@RequestMapping(value = {"/default", "/adminHome", "/home"}, method = RequestMethod.GET)
+	public String defaultAfterLogin(Model model) {
+
+		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		Credentials credentials = credentialsService.getCredentials(userDetails.getUsername());
+		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
+			model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
+			model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
+			return "admin/homeAdmin";
+		}
+		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
-        return "home";
-    }
-	
-    @RequestMapping(value = { "/register" }, method = RequestMethod.POST)
-    public String registerUser(@ModelAttribute("user") User user,
-                 BindingResult userBindingResult,
-                 @ModelAttribute("credentials") Credentials credentials,
-                 BindingResult credentialsBindingResult,
-                 Model model) {
+		return "home";
+	}
 
-        // validate user and credentials fields
-        this.userValidator.validate(user, userBindingResult);
-        this.credentialsValidator.validate(credentials, credentialsBindingResult);
+	@RequestMapping(value = { "/register" }, method = RequestMethod.POST)
+	public String registerUser(@ModelAttribute("user") User user,
+			BindingResult userBindingResult,
+			@ModelAttribute("credentials") Credentials credentials,
+			BindingResult credentialsBindingResult,
+			Model model) {
 
-        // if neither of them had invalid contents, store the User and the Credentials into the DB
-        if(!userBindingResult.hasErrors() && ! credentialsBindingResult.hasErrors()) {
-            // set the user and store the credentials;
-            // this also stores the User, thanks to Cascade.ALL policy
-            credentials.setUser(user);
-            credentialsService.saveCredentials(credentials);
-            return "registrationSuccessful";
-        }
-        return "registerUser";
-    }
+		// validate user and credentials fields
+		this.userValidator.validate(user, userBindingResult);
+		this.credentialsValidator.validate(credentials, credentialsBindingResult);
+
+		// if neither of them had invalid contents, store the User and the Credentials into the DB
+		if(!userBindingResult.hasErrors() && ! credentialsBindingResult.hasErrors()) {
+			// set the user and store the credentials;
+			// this also stores the User, thanks to Cascade.ALL policy
+			credentials.setUser(user);
+			credentialsService.saveCredentials(credentials);
+			return "registrationSuccessful";
+		}
+		return "registerUser";
+	}
 }
