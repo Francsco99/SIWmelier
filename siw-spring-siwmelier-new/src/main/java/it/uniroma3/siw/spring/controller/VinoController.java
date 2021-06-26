@@ -1,6 +1,5 @@
 package it.uniroma3.siw.spring.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;

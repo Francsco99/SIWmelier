@@ -1,6 +1,5 @@
 package it.uniroma3.siw.spring.controller;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Regione;
 import it.uniroma3.siw.spring.service.ProduttoreService;
@@ -37,6 +35,7 @@ public class RegioneController {
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
 	/*funzione test per aggiungere regioni*/
+	@SuppressWarnings("unused")
 	private void aggiungiRegioniTest() {
 		List<String> regioni = Arrays.asList("valle d'aosta","piemonte",
 				"lombardia","trentino","veneto","friuli","liguria",

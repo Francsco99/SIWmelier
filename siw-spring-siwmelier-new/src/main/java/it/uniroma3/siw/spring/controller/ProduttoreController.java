@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Produttore;
 import it.uniroma3.siw.spring.service.ProduttoreService;
@@ -31,16 +30,6 @@ public class ProduttoreController {
 
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-	private Produttore produttoreTemp;
-
-	/*Popola la form*/
-	@RequestMapping(value="/admin/addProduttore", method = RequestMethod.GET)
-	public String addProduttore(Model model) {
-		logger.debug("PASSO ALLA FORM addProduttore");
-		model.addAttribute("produttore", new Produttore());
-		return "/admin/produttoreForm.html";
-	}
-
 	/*Si occupa di gestire la richiesta quando viene selezionato
 	 * un produttore dalla pagina dei vari produttori*/
 	@RequestMapping(value = "/produttore/{id}", method = RequestMethod.GET)
@@ -60,6 +49,14 @@ public class ProduttoreController {
 		model.addAttribute("produttori", this.produttoreService.tutti());
 		return "produttori.html";
 	}
+	
+	/*Popola la form*/
+	@RequestMapping(value="/admin/addProduttore", method = RequestMethod.GET)
+	public String addProduttore(Model model) {
+		logger.debug("PASSO ALLA FORM addProduttore");
+		model.addAttribute("produttore", new Produttore());
+		return "/admin/produttoreForm.html";
+	}
 
 	/*raccoglie e valida i dati della form*/
 	@RequestMapping(value = "/admin/inserisciProduttore", method = RequestMethod.POST)
@@ -68,29 +65,11 @@ public class ProduttoreController {
 		this.produttoreValidator.validate(produttore, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, passo alla conferma");
-			this.produttoreTemp = produttore;
-			return "/admin/confermaProduttoreForm.html";
+			this.produttoreService.inserisci(produttore);
+			return "produttori.html";
 		}
 		return "/admin/produttoreForm.html";
 	}
 
-	@RequestMapping(value = "/admin/confermaProduttore", method = RequestMethod.POST)
-	public String confermaProduttore(Model model,
-			@RequestParam(value = "action") String comando) {
-		model.addAttribute("produttore",produttoreTemp);
-
-		if(comando.equals("confirm")) {
-			/*cambio le stringhe con caratteri tutti minuscoli per facilitare la ricerca*/
-			produttoreTemp.setNome(produttoreTemp.getNome().toLowerCase());					
-
-			logger.debug("CONFERMO e SALVO dati produttore");
-			this.produttoreService.inserisci(produttoreTemp);
-			model.addAttribute("produttori", this.produttoreService.tutti());
-			return "produttori.html";
-		}
-		else {
-			return "/admin/produttoreForm.html";
-		}
-	}
 
 }

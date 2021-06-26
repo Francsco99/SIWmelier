@@ -36,6 +36,7 @@ public class CatalogoController {
 	
 	
 	/*funzione temporanea per aggiungere i cataloghi*/
+	@SuppressWarnings("unused")
 	private void aggiungiCataloghi() {
 		
 		Catalogo c1 = new Catalogo("doc", "Denominazione di origine controllata");
