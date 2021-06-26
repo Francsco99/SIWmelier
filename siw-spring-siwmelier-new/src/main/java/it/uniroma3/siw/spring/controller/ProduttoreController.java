@@ -1,6 +1,5 @@
 package it.uniroma3.siw.spring.controller;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import it.uniroma3.siw.spring.model.Produttore;
 import it.uniroma3.siw.spring.model.Regione;
@@ -77,6 +75,8 @@ public class ProduttoreController {
 		this.produttoreValidator.validate(produttore, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, passo alla conferma");
+			
+			produttore.setNome(produttore.getNome().toLowerCase());
 			this.produttoreService.inserisci(produttore);
 			
 			//devo settare la many to many, quindi prendo prima tutte
@@ -85,7 +85,7 @@ public class ProduttoreController {
 			
 			//poi per ogni regioni prendo i produttori esistenti
 			for(Regione r : regioni) {
-				List<Produttore> produttori =r.getProduttori();
+				List<Produttore> produttori = this.produttoreService.produttoriPerRegione(r);
 				
 				//ci aggiungo quello corrente alla lista
 				produttori.add(produttore);
@@ -105,8 +105,9 @@ public class ProduttoreController {
 				vinoService.inserisci(v);
 			}
 			
-			model.addAttribute("produttori", this.produttoreService.tutti());
-			return "produttori.html";
+			model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
+			model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
+			return "/admin/homeAdmin.html";
 		}
 		return "/admin/produttoreForm.html";
 	}

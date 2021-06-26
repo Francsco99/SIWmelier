@@ -27,8 +27,8 @@ public class Produttore {
 	private List<Regione> regioni;
 
 	public Produttore() {
-		this.setViniProdotti(new ArrayList<>());
-		this.setRegioni(new ArrayList<>());
+		this.viniProdotti = new ArrayList<>();
+		this.regioni = new ArrayList<>();
 	}
 
 	public Produttore(String nome, String descrizione) {

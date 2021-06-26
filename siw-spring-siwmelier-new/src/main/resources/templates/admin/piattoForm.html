@@ -7,7 +7,58 @@
 
 <nav th:replace="fragments/myBase.html :: navigazione"></nav>
 
-<body></body>
+<body>
+
+	<div>
+		<h3 class="titoli-form">Inserisci i dati del vino:</h3>
+	</div>
+
+	<form th:action="@{/admin/inserisciPiatto}" method="POST" th:object="${piatto}">
+
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					
+					<div class="form-group">
+						<label for="myFormInput">Nome</label>
+						<input type="text" 
+						th:field="*{nome}" 
+						class="form-control" 
+						id="myFormInput" 
+						placeholder="Nome">
+						<span th:if="${#fields.hasErrors('nome')}" th:errors="*{nome}"></span>
+					</div>
+
+					<div class="form-group">
+						<label for="myFormInput-2">Immagine</label>
+						<input type="text" th:field="*{immagine}" class="form-control" id="myFormInput-2" placeholder="Immagine">
+						<span th:if="${#fields.hasErrors('immagine')}" th:errors="*{immagine}"></span>
+					</div>
+
+					<div class="form-group">
+						<label>Abbinamenti con vini</label>
+						<select th:field="*{vini}" class="select" multiple="multiple">
+							<option value="0">--seleziona uno o più vini--</option>
+							<option th:each="vino : ${vini}"
+							th:field="*{vini}"
+							th:value="${vino.id}"
+							th:text="${vino.nome}">
+						</option>
+					</select>
+				</div>
+
+			</div>
+		</div>
+		<div class="row">
+			<div class="col">
+				<button type="submit" class="btn btn-lg btn-primary btn-block">Aggiungi piatto</button>
+			</div>
+		</div>
+	</div>
+</form>
+
 
 <footer th:replace="fragments/myBase.html :: pie"></footer>
+
+</body>
 </html>

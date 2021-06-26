@@ -1,5 +1,7 @@
 package it.uniroma3.siw.spring.controller;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +14,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import it.uniroma3.siw.spring.model.Piatto;
+import it.uniroma3.siw.spring.model.Vino;
 import it.uniroma3.siw.spring.service.PiattoService;
+import it.uniroma3.siw.spring.service.VinoService;
 import it.uniroma3.siw.spring.validator.PiattoValidator;
 
 @Controller
@@ -22,17 +26,13 @@ public class PiattoController {
 	private PiattoService piattoService;
 	
 	@Autowired
+	private VinoService vinoService;
+	
+	@Autowired
 	private PiattoValidator piattoValidator;
 	
 	private final Logger logger = LoggerFactory.getLogger(this.getClass());
 	
-	/*Popola la form*/
-	@RequestMapping(value="/admin/addPiatto", method = RequestMethod.GET)
-	public String addPiatto(Model model) {
-		logger.debug("PASSO ALLA FORM addPiatto");
-		model.addAttribute("piatto", new Piatto());
-		return "/admin/piattoForm.html";
-	}
 	
 	/*Si occupa di gestire la richiesta quando viene selezionato
 	 * un piatto dalla pagina dei vari piatti*/
@@ -42,7 +42,6 @@ public class PiattoController {
 		model.addAttribute("piatto", piatto);
 
 		/*popola la lista dei vini di questo piatto corrente*/
-		//GETVINI
 		return "piatto.html";
 	}
 	
@@ -54,6 +53,15 @@ public class PiattoController {
 		return "piatti.html";
 	}
 	
+	/*Popola la form*/
+	@RequestMapping(value="/admin/addPiatto", method = RequestMethod.GET)
+	public String addPiatto(Model model) {
+		logger.debug("PASSO ALLA FORM addPiatto");
+		model.addAttribute("piatto", new Piatto());
+		model.addAttribute("vini", this.vinoService.tuttiOrdinatiAlfabetico());
+		return "/admin/piattoForm.html";
+	}
+	
 	/*raccoglie e valida i dati della form*/
 	@RequestMapping(value = "/admin/inserisciPiatto", method = RequestMethod.POST)
 	public String newPiatto(@ModelAttribute("piatto") Piatto piatto, 
@@ -61,8 +69,21 @@ public class PiattoController {
 		this.piattoValidator.validate(piatto, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, inserisco il piatto nel db");
+			
+			piatto.setNome(piatto.getNome().toLowerCase());
 			this.piattoService.inserisci(piatto);
-			return "piatti.html";
+			
+			List<Vino> vini = piatto.getVini();
+			
+			for(Vino v : vini) {
+				List<Piatto> piatti = this.piattoService.piattiPerVini(v);
+				piatti.add(piatto);
+				v.setPiatti(piatti);
+				vinoService.inserisci(v);
+			}
+			model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
+			model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
+			return "/admin/homeAdmin.html";
 		}
 		return "/admin/piattoForm.html";
 	} 

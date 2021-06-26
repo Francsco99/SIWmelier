@@ -49,14 +49,6 @@ public class RegioneController {
 		}
 	}
 
-	/*Popola la form*/
-	@RequestMapping(value="/admin/addRegione", method = RequestMethod.GET)
-	public String addRegione(Model model) {
-		logger.debug("PASSO ALLA FORM addRegione");
-		model.addAttribute("regione", new Regione());
-		return "/admin/regioneForm.html";
-	}
-
 	/*Si occupa di gestire la richiesta quando viene selezionato
 	 * una regione dalla pagina delle varie regioni*/
 
@@ -75,11 +67,19 @@ public class RegioneController {
 	 * il link della pagina regioni*/
 	@RequestMapping(value = "/regioni", method = RequestMethod.GET)
 	public String getRegioni(Model model) {
-		//this.aggiungiRegioniTest();
 		model.addAttribute("regioni", this.regioneService.tutteAlfabetico());
 		return "regioni.html";
 	}
 
+	/*Popola la form*/
+	@RequestMapping(value="/admin/addRegione", method = RequestMethod.GET)
+	public String addRegione(Model model) {
+		logger.debug("PASSO ALLA FORM addRegione");
+		model.addAttribute("regione", new Regione());
+		return "/admin/regioneForm.html";
+	}
+
+	
 	/*raccoglie e valida i dati della form*/
 	@RequestMapping(value = "/admin/inserisciRegione", method = RequestMethod.POST)
 	public String newRegione(@ModelAttribute("regione") Regione regione, 
@@ -87,6 +87,7 @@ public class RegioneController {
 		this.regioneValidator.validate(regione, bindingResult);
 		if (!bindingResult.hasErrors()) {
 			logger.debug("Non ci sono errori, inserisco la regione nel db");
+			regione.setNome(regione.getNome().toLowerCase());
 			this.regioneService.inserisci(regione);
 			return "regioni.html";
 		}

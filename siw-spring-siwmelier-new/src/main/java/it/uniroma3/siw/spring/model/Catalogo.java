@@ -53,5 +53,13 @@ public class Catalogo {
 	public void setDescrizione(String descrizione) {
 		this.descrizione = descrizione;
 	}
+
+	public List<Vino> getVini() {
+		return vini;
+	}
+
+	public void setVini(List<Vino> vini) {
+		this.vini = vini;
+	}
 	
 }

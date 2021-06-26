@@ -44,6 +44,11 @@
   }
 }
 
+.titoli-form{
+  margin-top: 10px;
+  margin-bottom: 30px;
+  text-align: center;
+}
 .form-group{
   margin-bottom: 20px;
 }

@@ -8,6 +8,7 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import it.uniroma3.siw.spring.model.Produttore;
 import it.uniroma3.siw.spring.model.Regione;
 import it.uniroma3.siw.spring.repository.RegioneRepository;
 
@@ -57,5 +58,10 @@ public class RegioneService {
 	@Transactional
 	public List<Regione> regioniPerNome(String nome){
 		return this.regioneRepository.findByNome(nome);
+	}
+	
+	@Transactional
+	public List<Regione> regioniPerProduttori(Produttore produttore){
+		return this.regioneRepository.findByProduttori(produttore);
 	}
 }

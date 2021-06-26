@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Piatto;
+import it.uniroma3.siw.spring.model.Vino;
 import it.uniroma3.siw.spring.repository.PiattoRepository;
 
 @Service
@@ -52,5 +53,9 @@ public class PiattoService {
 	@Transactional
 	public List<Piatto> piattiPerNome(String nome){
 		return this.piattoRepository.findByNome(nome);
+	}
+	
+	public List<Piatto> piattiPerVini(Vino vino){
+		return this.piattoRepository.findByVini(vino);
 	}
 }

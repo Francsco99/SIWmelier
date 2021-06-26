@@ -53,11 +53,10 @@ public class Vino {
 		this.nome = nome;
 		this.immagine = immagine;
 		this.voto=voto;
-		this.setPiatti(new ArrayList<>());	
 	}
 	
 	public Vino() {
-		this.setPiatti(new ArrayList<>());	
+		this.piatti = new ArrayList<>();
 	}
 
 	public Long getId() {
@@ -162,6 +161,14 @@ public class Vino {
 
 	public void setPiatti(List<Piatto> piatti) {
 		this.piatti = piatti;
+	}
+
+	public Catalogo getCatalogo() {
+		return catalogo;
+	}
+
+	public void setCatalogo(Catalogo catalogo) {
+		this.catalogo = catalogo;
 	}
 
 }

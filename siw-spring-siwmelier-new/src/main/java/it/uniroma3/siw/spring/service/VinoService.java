@@ -9,9 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import it.uniroma3.siw.spring.model.Catalogo;
-import it.uniroma3.siw.spring.model.Colore;
-import it.uniroma3.siw.spring.model.Corposita;
-import it.uniroma3.siw.spring.model.Effervescenza;
+import it.uniroma3.siw.spring.model.Piatto;
 import it.uniroma3.siw.spring.model.Produttore;
 import it.uniroma3.siw.spring.model.Vino;
 import it.uniroma3.siw.spring.repository.VinoRepository;
@@ -95,17 +93,17 @@ public class VinoService {
 		}
 	
 	@Transactional
-	public List<Vino> viniPerEffervescenza(Effervescenza effervescenza){
+	public List<Vino> viniPerEffervescenza(Float effervescenza){
 		return this.vinoRepository.findByEffervescenza(effervescenza);
 	}
 	
 	@Transactional
-	public List<Vino> viniPerCorposita(Corposita corposita){
+	public List<Vino> viniPerCorposita(Float corposita){
 		return this.vinoRepository.findByCorposita(corposita);
 		}
 	
 	@Transactional
-	public List<Vino> viniPerColore(Colore colore){
+	public List<Vino> viniPerColore(String colore){
 		return this.vinoRepository.findByColore(colore);
 	}
 	
@@ -117,5 +115,10 @@ public class VinoService {
 	@Transactional
 	public List<Vino> viniPerCatalogo(Catalogo catalogo){
 		return (List<Vino>) this.vinoRepository.findByCatalogo(catalogo);
+	}
+	
+	@Transactional
+	public List<Vino> viniPerPiatti(Piatto piatto){
+		return this.vinoRepository.findByPiatti(piatto);
 	}
 }

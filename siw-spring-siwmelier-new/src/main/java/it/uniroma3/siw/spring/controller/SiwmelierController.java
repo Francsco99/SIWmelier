@@ -56,24 +56,9 @@ public class SiwmelierController {
 		return "risultatoRicerca.html";
 	}
 	
-	/*funzione test per aggiungere vini*/
-	@SuppressWarnings("unused")
-	private void aggiungiViniTest() {
-		Vino v5 = new Vino("vino5","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",10f);
-		Vino v1 = new Vino("vino1","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",9f);
-		Vino v2 = new Vino("vino2","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",8f);
-		Vino v3 = new Vino("vino3","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",7f);
-		Vino v4 = new Vino("vino4","https://www.saporidoc.it/2036-thickbox_default/giro-di-sicilia-rossi.jpg",6f);
-		this.vinoService.inserisci(v1);
-		this.vinoService.inserisci(v2);
-		this.vinoService.inserisci(v3);
-		this.vinoService.inserisci(v4);
-		this.vinoService.inserisci(v5);
-	}
 
 	@RequestMapping(value= {"/", "index"}, method = RequestMethod.GET)
 	public String getViniIndex(Model model) {
-		//this.aggiungiViniTest();
 		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
 		return "index";
