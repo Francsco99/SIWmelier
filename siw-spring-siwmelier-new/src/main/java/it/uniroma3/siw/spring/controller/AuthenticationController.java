@@ -58,7 +58,7 @@ public class AuthenticationController {
 		if (credentials.getRole().equals(Credentials.ADMIN_ROLE)) {
 			model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 			model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());
-			return "admin/homeAdmin";
+			return "admin/home";
 		}
 		model.addAttribute("viniDecr", this.vinoService.tuttiOrdinatiPerVotoDec());
 		model.addAttribute("viniCresc", this.vinoService.tuttiOrdinatiPerVotoCres());

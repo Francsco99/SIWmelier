@@ -70,41 +70,8 @@
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/vini}">Vini</a>
 			</li>
-		</ul>
 
-		<form class="d-flex mx-auto" th:action="ricerca">
-			<div class="container h-100">
-				<div class="d-flex justify-content-center h-100">
-					<div class="searchbar">
-						<input class="search_input" th:type="text" th:name="cerca" th:placeholder="Cerca...">
-						<a href="#" class="search_icon"><i class="fas fa-search"></i></a>
-					</div>
-				</div>
-			</div>
-		</form>
-
-		<ul class="navbar-nav ms-auto">
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/logout}">Logout</a>
-			</li>
-		</ul>
-	</nav>
-
-
-	<!--BARRA DI NAVIGAZIONE SE SEI ADMIN-->
-	<nav th:fragment="navigazioneAdmin" class="navbar navbar-expand-lg bg-viola-chiaro navbar-dark">
-		<a th:href="@{/adminHome}" class="navbar-brand">Home</a>
-		<ul class="navbar-nav me-auto">
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/regioni}">Regioni</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/cataloghi}">Cataloghi</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/vini}">Vini</a>
-			</li>
-			<li class="nav-item dropdown">
+			<li class="nav-item dropdown" sec:authorize="hasAuthority('ADMIN')">
 				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 					Gestisci database
 				</a>
@@ -137,7 +104,6 @@
 			</li>
 		</ul>
 	</nav>
-
 
 	<!--CARDS DEI VINI PIU VOTATI, MOSTRIAMO SOLO I PRIMI 4 DELLA LISTA PER EVITARE
 		CHE LE CARDS SIANO TROPPO PICCOLE.-->

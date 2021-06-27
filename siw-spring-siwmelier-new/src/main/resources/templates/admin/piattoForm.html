@@ -5,12 +5,12 @@
 
 <head th:include="fragments/myBase.html :: intestazione"></head>
 
-<nav th:replace="fragments/myBase.html :: navigazione"></nav>
+<nav th:replace="fragments/myBase.html :: navigazioneLoggato"></nav>
 
 <body>
 
 	<div>
-		<h3 class="titoli-form">Inserisci i dati del vino:</h3>
+		<h3 class="titoli-form">Inserisci i dati del piatto:</h3>
 	</div>
 
 	<form th:action="@{/admin/inserisciPiatto}" method="POST" th:object="${piatto}">
