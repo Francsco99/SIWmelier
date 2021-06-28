@@ -50,7 +50,7 @@ public class AuthenticationController {
 		return "index";
 	}
 
-	@RequestMapping(value = {"/default", "/adminHome", "/home"}, method = RequestMethod.GET)
+	@RequestMapping(value = {"/default", "/home"}, method = RequestMethod.GET)
 	public String defaultAfterLogin(Model model) {
 
 		UserDetails userDetails = (UserDetails)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
